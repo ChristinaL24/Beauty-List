@@ -1,0 +1,67 @@
+.container {
+  margin: 0 auto;
+  padding: 0 4.5rem;
+  max-width: 600px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column-full,
+.column-half, {
+  width: 100%;
+}
+
+.column-one-third {
+  width: calc(100% / 3);
+}
+
+.column-sixty {
+  width: 60%;
+}
+
+@media screen and (min-width: 750px) {
+  .container {
+    max-width: 800px;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+}
+
+.wrapper {
+  margin: 1rem 0;
+  height: 110px;
+  width: 345px;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.product-img {
+  height: 109.7px;
+  width: 120px;
+}
+
+.no-padding {
+  padding-left: 0;
+}
+
+/* code for footer */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+/* code for footer  */

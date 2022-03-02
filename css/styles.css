@@ -1,3 +1,21 @@
-ul {
+.no-padding {
   list-style: none;
+}
+
+body {
+  background-color: #e5e5e5;
+}
+
+header {
+  background-color: #9aaef3;
+  color: white;
+  font-family: "Berkshire Swash", cursive, sans-serif;
+}
+
+footer {
+  background-color: #9aaef3;
+}
+
+.wrapper {
+  background-color: white;
 }
