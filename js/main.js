@@ -43,9 +43,9 @@ xhr.send();
 function renderListing(listing) {
 
   /* addEventListener for broken images:
-     Used ./ because one dot represents the current directory
-     querySelectorAll returns a nodes list aka an array so the for
-     each function was used in this case to help target all images */
+     Used ./ because one dot represents the current directory;
+     querySelectorAll returns a nodes list aka an array so the 'for
+     each' function was used in this case to help target all images */
   var $imgBroken = document.querySelectorAll('img');
   [].forEach.call($imgBroken, function (event) {
     event.addEventListener('error', function (event) {
