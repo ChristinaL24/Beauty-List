@@ -4,6 +4,10 @@
   max-width: 600px;
 }
 
+img {
+  width: 100%;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +60,13 @@ footer {
   padding-left: 0.5rem;
 }
 
+.inline-align-gap {
+  display: inline;
+  display: flex;
+  align-items: center;
+  gap: 12.5rem;
+}
+
 /* Media queries should always be last since they are reliant on source order */
 
 @media screen and (min-width: 750px) {
@@ -69,5 +80,12 @@ footer {
 
   .padding-right {
     padding-right: 2.5rem;
+  }
+
+  .inline-align-gap {
+    display: inline;
+    display: flex;
+    align-items: center;
+    gap: 29rem;
   }
 }

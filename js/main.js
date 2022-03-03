@@ -1,6 +1,3 @@
-
-/* Function that test if our API works */
-
 /* code for <ul> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
 
@@ -8,6 +5,7 @@ var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json');
 xhr.responseType = 'json';
 
+/* Function that test if our API works */
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
