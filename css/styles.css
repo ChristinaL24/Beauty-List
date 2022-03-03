@@ -30,11 +30,7 @@ ul {
   line-height: 0.75rem;
 }
 
-h5,
-p {
+h5 {
   font-family: Montserrat, sans-serif, serif;
-}
-
-.product-info {
-  overflow: auto;
+  font-size: 11.5px;
 }

@@ -42,8 +42,8 @@ xhr.send();
 
 function renderListing(listing) {
 
-  /* addEventListener for broken images
-     used ./ because one dot represents the current directory
+  /* addEventListener for broken images:
+     Used ./ because one dot represents the current directory
      querySelectorAll returns a nodes list aka an array so the for
      each function was used in this case to help target all images */
   var $imgBroken = document.querySelectorAll('img');
@@ -74,15 +74,29 @@ function renderListing(listing) {
   firstDiv.appendChild(thirdDiv);
 
   var productName = document.createElement('h5');
-  productName.textContent = listing.name;
+  productName.textContent = capitalizeWords(listing.name);
   thirdDiv.appendChild(productName);
 
-  /* Use Number.prototype.toFixed() to format the prices from having one number
-     after the decimal to two numbers */
+  /* Use Number.prototype.toFixed() to format the prices from ending at the tenths
+     place to the hundreths */
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
 
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
+
+}
+
+/* Function that handles the title casing for our product name */
+function capitalizeWords(string) {
+
+  var array = string.split(' ');
+  var newString = '';
+  for (var i = 0; i < array.length; i++) {
+    var word = array[i];
+    var newWord = word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase();
+    newString = newString + ' ' + newWord;
+  }
+  return newString.slice(1);
 }
