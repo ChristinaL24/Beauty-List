@@ -81,6 +81,9 @@ function renderListing(listing) {
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
 
+  /* code to add a data-entry-id to each product listing */
+  makeUpListing.setAttribute('data-entry-id', listing.entryId);
+
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
 

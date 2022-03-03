@@ -61,7 +61,7 @@ footer {
 }
 
 .inline-align-gap {
-  display: inline;
+  display: inline-block;
   display: flex;
   align-items: center;
   gap: 12.5rem;
