@@ -24,7 +24,9 @@ xhr.addEventListener('load', function () {
       image: xhr.response[i].image_link
 
     };
-
+    /* To account for broken links & values in API:
+       This condition states that if the price is not strictly equal to zero
+       or null, then to append it to our listing */
     var makeUpProducts = renderListing(newListing);
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       $productListing.appendChild(makeUpProducts);
@@ -83,8 +85,10 @@ function renderListing(listing) {
   productName.textContent = listing.name;
   thirdDiv.appendChild(productName);
 
+  /* Use Number.prototype.toFixed() to format the prices from having one number
+     after the decimal to two numbers */
   var productPrice = document.createElement('p');
-  productPrice.textContent = '$' + listing.price;
+  productPrice.textContent = '$' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
 
   return makeUpListing;
