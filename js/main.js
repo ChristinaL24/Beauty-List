@@ -24,19 +24,34 @@ xhr.addEventListener('load', function () {
       image: xhr.response[i].image_link
 
     };
+
     var makeUpProducts = renderListing(newListing);
-    $productListing.appendChild(makeUpProducts);
+    if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
+      $productListing.appendChild(makeUpProducts);
+    }
   }
 
 });
 
 xhr.send();
 
+/*
+
+if the listing price is not strictly equal to 0.0 and null, then append
+the makeupProducts to the productListing
+
+else, return
+
+*/
+
 /* Function that takes product listing object and returns a DOM TREE */
 
 function renderListing(listing) {
 
-  /* addEventListener for broken images */
+  /* addEventListener for broken images
+     used ./ because one dot represents the current directory
+     querySelectorAll returns a nodes list aka an array so the for
+     each function was used in this case to help target all images */
   var $imgBroken = document.querySelectorAll('img');
   [].forEach.call($imgBroken, function (event) {
     event.addEventListener('error', function (event) {
