@@ -101,3 +101,10 @@ function capitalizeWords(string) {
   }
   return newString.slice(1);
 }
+
+/* addEventListener for parent element for all rendered listings */
+
+$productListing.addEventListener('click', productListingClicked);
+function productListingClicked(event) {
+
+}
