@@ -1,0 +1,36 @@
+.no-padding {
+  list-style: none;
+}
+
+body {
+  background-color: #e5e5e5;
+}
+
+header {
+  background-color: #9aaef3;
+  color: white;
+  font-family: "Berkshire Swash", cursive, sans-serif;
+}
+
+footer {
+  background-color: #9aaef3;
+}
+
+.wrapper {
+  background-color: white;
+  box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.253);
+  border-radius: 2px;
+}
+
+.product-img {
+  border-radius: 2px;
+}
+
+ul {
+  line-height: 0.75rem;
+}
+
+h5 {
+  font-family: Montserrat, sans-serif, serif;
+  font-size: 11.5px;
+}
