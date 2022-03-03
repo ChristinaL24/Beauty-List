@@ -64,7 +64,7 @@ function renderListing(listing) {
 
   var productImg = document.createElement('img');
   productImg.setAttribute('src', listing.image);
-  productImg.setAttribute('class', 'product-img');
+  productImg.setAttribute('class', 'product-img-listing');
   secondDiv.appendChild(productImg);
 
   var thirdDiv = document.createElement('div');
@@ -104,7 +104,26 @@ function capitalizeWords(string) {
 
 /* addEventListener for parent element for all rendered listings */
 
+function viewProductDetails(event) {
+  $productListing.className = 'row no-padding hidden';
+}
+
+function listingHomePage(event) {
+  $productListing.className = 'row no-padding view';
+  data.view = 'product-listing';
+}
+
+var $homeButton = document.querySelector('#home-button');
+$homeButton.addEventListener('click', homeButtonClicked);
+function homeButtonClicked(event) {
+  if (event.target.tagName === 'I') {
+    return listingHomePage();
+  }
+}
+
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
-
+  if (event.target.tagName === 'LI') {
+    return viewProductDetails();
+  }
 }
