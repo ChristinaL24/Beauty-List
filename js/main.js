@@ -27,6 +27,7 @@ xhr.addEventListener('load', function () {
     var makeUpProducts = renderListing(newListing);
     $productListing.appendChild(makeUpProducts);
   }
+
 });
 
 xhr.send();
@@ -34,6 +35,14 @@ xhr.send();
 /* Function that takes product listing object and returns a DOM TREE */
 
 function renderListing(listing) {
+
+  /* addEventListener for broken images */
+  var $imgBroken = document.querySelectorAll('img');
+  [].forEach.call($imgBroken, function (event) {
+    event.addEventListener('error', function (event) {
+      event.target.src = './images/image.png';
+    });
+  });
 
   var makeUpListing = document.createElement('li');
   makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right');
