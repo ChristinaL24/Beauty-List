@@ -25,3 +25,16 @@ footer {
 .product-img {
   border-radius: 2px;
 }
+
+ul {
+  line-height: 0.75rem;
+}
+
+h5,
+p {
+  font-family: Montserrat, sans-serif, serif;
+}
+
+.product-info {
+  overflow: auto;
+}

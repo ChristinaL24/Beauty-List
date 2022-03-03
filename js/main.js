@@ -1,3 +1,4 @@
+
 /* Function that test if our API works */
 
 /* code for <ul> element that holds our list items */
@@ -72,14 +73,14 @@ function renderListing(listing) {
   thirdDiv.setAttribute('class', 'column-two-third product-info');
   firstDiv.appendChild(thirdDiv);
 
-  var productName = document.createElement('h4');
+  var productName = document.createElement('h5');
   productName.textContent = listing.name;
   thirdDiv.appendChild(productName);
 
   /* Use Number.prototype.toFixed() to format the prices from having one number
      after the decimal to two numbers */
-  var productPrice = document.createElement('p');
-  productPrice.textContent = '$' + Number.parseFloat(listing.price).toFixed(2);
+  var productPrice = document.createElement('h5');
+  productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
 
   return makeUpListing;
