@@ -28,8 +28,8 @@ xhr.addEventListener('load', function () {
     /* To account for broken links & values in API:
        This condition states that if the price is not strictly equal to zero
        or null, then to append it to our listing */
-    var makeUpProducts = renderListing(newListing);
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
+      var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
     }
   }
