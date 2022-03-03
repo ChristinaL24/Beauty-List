@@ -37,15 +37,6 @@ xhr.addEventListener('load', function () {
 
 xhr.send();
 
-/*
-
-if the listing price is not strictly equal to 0.0 and null, then append
-the makeupProducts to the productListing
-
-else, return
-
-*/
-
 /* Function that takes product listing object and returns a DOM TREE */
 
 function renderListing(listing) {
