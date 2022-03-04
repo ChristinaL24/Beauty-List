@@ -42,3 +42,7 @@ h5 {
 i {
   font-size: 1.3rem;
 }
+
+.description {
+  line-height: 1.5rem;
+}
