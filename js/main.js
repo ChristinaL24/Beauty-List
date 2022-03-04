@@ -1,18 +1,19 @@
 /* code for <ul> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
+var $productDetails = document.querySelector('#product-details');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json');
 xhr.responseType = 'json';
 
-/* Function that test if our API works */
+/* Function that handles the API */
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
 
   /* log the xhr status & response to ensure it works
-      console.log(xhr.status);
-      console.log(xhr.response); */
+  console.log(xhr.status);
+  console.log(xhr.response); */
 
   for (var i = 0; i < xhr.response.length; i++) {
 
@@ -25,13 +26,14 @@ xhr.addEventListener('load', function () {
 
     };
     /* To account for broken links & values in API:
-       This condition states that if the price is not strictly equal to zero
-       or null, then to append it to our listing */
+    This condition states that if the price is not strictly equal to zero
+    or null, then to append it to our listing */
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
       var detailListing = renderDetails(newListing);
-      $productListing.appendChild(detailListing);
+      $productDetails.appendChild(detailListing);
+
     }
   }
 
@@ -39,14 +41,13 @@ xhr.addEventListener('load', function () {
 
 xhr.send();
 
-/* Function that takes product listing object and returns a DOM TREE */
-
+/* Function that takes product listing object and returns a DOM TREE for home page */
 function renderListing(listing) {
 
   /* addEventListener for broken images:
-     Used ./ because one dot represents the current directory;
-     querySelectorAll returns a nodes list aka an array so the 'for
-     each' function was used in this case to help target all images */
+  Used ./ because one dot represents the current directory;
+  querySelectorAll returns a nodes list aka an array so the 'for
+  each' function was used in this case to help target all images */
   var $imgBroken = document.querySelectorAll('img');
   [].forEach.call($imgBroken, function (event) {
     event.addEventListener('error', function (event) {
@@ -79,7 +80,7 @@ function renderListing(listing) {
   thirdDiv.appendChild(productName);
 
   /* Use Number.prototype.toFixed() to format the prices from ending at the tenths
-     place to the hundreths */
+  place to the hundreths */
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
@@ -105,33 +106,8 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-/* addEventListener for parent element for all rendered listings
-
-function viewProductDetails(event) {
-  $productListing.className = 'row no-padding hidden';
-}
-
-function listingHomePage(event) {
-  $productListing.className = 'row no-padding view';
-  data.view = 'product-listing';
-}
-
-var $homeButton = document.querySelector('#home-button');
-$homeButton.addEventListener('click', homeButtonClicked);
-function homeButtonClicked(event) {
-  if (event.target.tagName === 'I') {
-    return listingHomePage();
-  }
-}
-
-$productListing.addEventListener('click', productListingClicked);
-function productListingClicked(event) {
-  if (event.target.tagName === 'LI') {
-    return viewProductDetails();
-  }
-}
-*/
-
+/* Function that takes product listing object and returns a DOM TREE for listing
+detail page */
 function renderDetails(listing) {
 
   var $imgBroken = document.querySelectorAll('img');
@@ -173,5 +149,33 @@ function renderDetails(listing) {
   detailDescriptionPara.textContent = listing.description;
   thirdDiv.appendChild(detailDescriptionPara);
 
+  firstDiv.setAttribute('data-entry-id', listing.entryId);
   return firstDiv;
 }
+
+/* addEventListener for parent element for all rendered listings
+
+function viewProductDetails(event) {
+  $productListing.className = 'row no-padding hidden';
+}
+
+function listingHomePage(event) {
+  $productListing.className = 'row no-padding view';
+  data.view = 'product-listing';
+}
+
+var $homeButton = document.querySelector('#home-button');
+$homeButton.addEventListener('click', homeButtonClicked);
+function homeButtonClicked(event) {
+  if (event.target.tagName === 'I') {
+    return listingHomePage();
+  }
+}
+
+$productListing.addEventListener('click', productListingClicked);
+function productListingClicked(event) {
+  if (event.target.tagName === 'LI') {
+    return viewProductDetails();
+  }
+}
+*/
