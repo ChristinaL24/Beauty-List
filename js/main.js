@@ -1,5 +1,6 @@
 /* code for <ul> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
+/* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
 
 var xhr = new XMLHttpRequest();
@@ -10,10 +11,6 @@ xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
-
-  /* log the xhr status & response to ensure it works
-  console.log(xhr.status);
-  console.log(xhr.response); */
 
   for (var i = 0; i < xhr.response.length; i++) {
 
@@ -31,9 +28,6 @@ xhr.addEventListener('load', function () {
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
-      var detailListing = renderDetails(newListing);
-      $productDetails.appendChild(detailListing);
-
     }
   }
 
@@ -56,7 +50,7 @@ function renderListing(listing) {
   });
 
   var makeUpListing = document.createElement('li');
-  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right');
+  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right list-data');
 
   var firstDiv = document.createElement('div');
   firstDiv.setAttribute('class', 'wrapper row');
@@ -106,61 +100,15 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-/* Function that takes product listing object and returns a DOM TREE for listing
-detail page */
-function renderDetails(listing) {
-
-  var $imgBroken = document.querySelectorAll('img');
-  [].forEach.call($imgBroken, function (event) {
-    event.addEventListener('error', function (event) {
-      event.target.src = './images/image.png';
-    });
-  });
-
-  var firstDiv = document.createElement('div');
-  firstDiv.setAttribute('class', 'row');
-
-  var secondDiv = document.createElement('div');
-  secondDiv.setAttribute('class', 'column-mobile-full column-desktop-half padding-right');
-  firstDiv.appendChild(secondDiv);
-
-  var detailImage = document.createElement('img');
-  detailImage.setAttribute('src', listing.image);
-  detailImage.setAttribute('class', 'product-img-details');
-  secondDiv.appendChild(detailImage);
-
-  var thirdDiv = document.createElement('div');
-  thirdDiv.setAttribute('class', 'column-desktop-half');
-  secondDiv.appendChild(thirdDiv);
-
-  var detailProductName = document.createElement('h3');
-  detailProductName.textContent = capitalizeWords(listing.name);
-  thirdDiv.appendChild(detailProductName);
-
-  var detailPrice = document.createElement('h3');
-  detailPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
-  thirdDiv.appendChild(detailPrice);
-
-  var detailDescription = document.createElement('h3');
-  detailDescription.textContent = 'Description:';
-  thirdDiv.appendChild(detailDescription);
-
-  var detailDescriptionPara = document.createElement('h3');
-  detailDescriptionPara.textContent = listing.description;
-  thirdDiv.appendChild(detailDescriptionPara);
-
-  firstDiv.setAttribute('data-entry-id', listing.entryId);
-  return firstDiv;
-}
-
-/* addEventListener for parent element for all rendered listings
-
 function viewProductDetails(event) {
-  $productListing.className = 'row no-padding hidden';
+  $productListing.className = 'hidden';
+  $productDetails.className = 'margin-top view';
+  data.view = 'product-details';
 }
 
 function listingHomePage(event) {
   $productListing.className = 'row no-padding view';
+  $productDetails.className = 'margin-top hidden';
   data.view = 'product-listing';
 }
 
@@ -172,10 +120,26 @@ function homeButtonClicked(event) {
   }
 }
 
+var $productImageDetails = document.querySelector('.product-image-details');
+var $productNameDetails = document.querySelector('.product-name-span');
+var $productDescriptionDetails = document.querySelector('.product-description-details');
+var $productPriceDetails = document.querySelector('.product-price-span');
+
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
-  if (event.target.tagName === 'LI') {
-    return viewProductDetails();
+  if (event.target.closest('li')) {
+    var getListingItem = event.target.closest('li');
+    var getListingObjectId = parseInt(getListingItem.getAttribute('data-entry-id'));
+    data.select = getListingObjectId;
+    for (var i = 0; i < data.select.length; i++) {
+      if (getListingObjectId === data.select[i].entryId) {
+        $productImageDetails.setAttribute = ('src', xhr.response[i].image_link);
+        $productNameDetails.value = data.select[i].name;
+        $productDescriptionDetails.value = data.select[i].description;
+        $productPriceDetails.value = data.select[i].price;
+
+        viewProductDetails();
+      }
+    }
   }
 }
-*/

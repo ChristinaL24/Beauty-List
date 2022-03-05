@@ -34,7 +34,7 @@ img {
 .product-img-listing {
   width: 100%;
   object-fit: fill;
-  height: 6rem;
+  height: 6.25rem;
 }
 
 .no-padding {
