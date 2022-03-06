@@ -1,104 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project: Beauty List</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Project: Beauty List</title>
+    <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
 
-<body>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="column-full inline-align-gap" id="nav-bar">
-          <h2>Beauty List</h2>
-          <a href="#" class="home-button">
-            <i class="fa-solid fa-house-chimney white" id="home-button"></i>
-          </a>
-        </div>
-      </div>
-  </header>
-  <main>
-    <div class="container">
-      <div data-view="product-lists" class="view" id="product-listing">
-        <ul class="row no-padding get-details">
-
-          <li class="column-mobile-full column-desktop-half padding-right list-data" data-entry-id="1048">
-            <div class="wrapper row">
-              <div class="column-one-third"><img
-                  src="https://cdn.shopify.com/s/files/1/1338/0845/collections/lippie-pencil_grande.jpg?v=1512588769"
-                  class="product-img-listing"></div>
-              <div class="column-two-third product-info">
-                <h5>Lippie Pencil</h5>
-                <h5>Price: $5.00</h5>
-              </div>
-            </div>
-          </li>
-
-          <li class="column-mobile-full column-desktop-half padding-right list-data" data-entry-id="1047">
-            <div class="wrapper row">
-              <div class="column-one-third"><img
-                  src="https://cdn.shopify.com/s/files/1/1338/0845/products/brain-freeze_a_800x1200.jpg?v=1502255076"
-                  class="product-img-listing"></div>
-              <div class="column-two-third product-info">
-                <h5>Blotted Lip</h5>
-                <h5>Price: $5.50</h5>
-              </div>
-            </div>
-          </li>
-
-
-
-        </ul>
-      </div>
-    </div>
-
-    <div class="container">
-      <div data-view="product-details" class="margin-top view" id="product-details">
+  <body>
+    <header>
+      <div class="container">
         <div class="row">
-          <div class="column-mobile-full column-desktop-half padding-right">
-            <img src="" class="product-img-details">
-          </div>
-          <div class="column-desktop-half">
-            <h3 class="product-name-details">Product Name:<span class="product-name-span"></span>
-            </h3>
-            <h3 class="product-price-details">Price:<span class="product-price-span"></span>
-            </h3>
-            <h3>Description:</h3>
-            <p class="product-description-details"></p>
+          <div class="column-full inline-align-gap" id="nav-bar">
+            <h2>Beauty List</h2>
+            <a href="#" class="home-button">
+              <i class="fa-solid fa-house-chimney white" id="home-button"></i>
+            </a>
           </div>
         </div>
+    </header>
 
-      </div>
-    </div>
+    <main>
+      <div class="container">
+        <div data-view="product-lists" class="row no-padding" id="product-listing">
 
-
-
-  </main>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="column-full">
-          <p></p>
         </div>
       </div>
-  </footer>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+
+
+      <div class="container">
+        <div data-view="product-details" class="margin-top hidden" id="product-details">
+          <div class="row">
+            <div class="column-mobile-full column-desktop-half padding-right">
+              <img src="" class="product-img-details">
+            </div>
+            <div class="column-desktop-half">
+              <h3 class="product-name-details">Product Name:<span class="product-name-span"></span>
+              </h3>
+              <h3 class="product-price-details">Price:<span class="product-price-span"></span>
+              </h3>
+              <h3>Description:</h3>
+              <p class="product-description-details"></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </main>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="column-full">
+            <p></p>
+          </div>
+        </div>
+    </footer>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+
 </html>

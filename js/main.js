@@ -3,8 +3,9 @@ var $productListing = document.querySelector('#product-listing');
 /* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
 
+/* make sure to change website */
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
 xhr.responseType = 'json';
 
 /* Function that handles the API */
@@ -49,8 +50,11 @@ function renderListing(listing) {
     });
   });
 
+  var makeUpContainer = document.createElement('ul');
+
   var makeUpListing = document.createElement('li');
-  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right list-data');
+  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right');
+  makeUpContainer.appendChild(makeUpListing);
 
   var firstDiv = document.createElement('div');
   firstDiv.setAttribute('class', 'wrapper row');
@@ -100,46 +104,12 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function viewProductDetails(event) {
-  $productListing.className = 'hidden';
-  $productDetails.className = 'margin-top view';
-  data.view = 'product-details';
-}
-
-function listingHomePage(event) {
-  $productListing.className = 'row no-padding view';
-  $productDetails.className = 'margin-top hidden';
-  data.view = 'product-listing';
-}
-
-var $homeButton = document.querySelector('#home-button');
-$homeButton.addEventListener('click', homeButtonClicked);
-function homeButtonClicked(event) {
-  if (event.target.tagName === 'I') {
-    return listingHomePage();
-  }
-}
-
-var $productImageDetails = document.querySelector('.product-image-details');
-var $productNameDetails = document.querySelector('.product-name-span');
-var $productDescriptionDetails = document.querySelector('.product-description-details');
-var $productPriceDetails = document.querySelector('.product-price-span');
-
-$productListing.addEventListener('click', productListingClicked);
-function productListingClicked(event) {
-  if (event.target.closest('li')) {
-    var getListingItem = event.target.closest('li');
-    var getListingObjectId = parseInt(getListingItem.getAttribute('data-entry-id'));
-    data.select = getListingObjectId;
-    for (var i = 0; i < data.select.length; i++) {
-      if (getListingObjectId === data.select[i].entryId) {
-        $productImageDetails.setAttribute = ('src', xhr.response[i].image_link);
-        $productNameDetails.value = data.select[i].name;
-        $productDescriptionDetails.value = data.select[i].description;
-        $productPriceDetails.value = data.select[i].price;
-
-        viewProductDetails();
-      }
-    }
+/* addEventListener for <li> being clicked */
+$productDetails.addEventListener('click', productDetailsClicked);
+function productDetailsClicked(event) {
+  if (event.target.tagName === 'LI') {
+    $productListing.className = 'row no-padding hidden';
+    $productDetails.className = 'margin-top view';
+    data.view = 'product-details';
   }
 }
