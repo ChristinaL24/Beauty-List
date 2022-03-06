@@ -1,6 +1,6 @@
 /* exported data */
 var data = {
-  listings: []
+  view: 'product-lists'
 };
 
 var previousEntries = localStorage.getItem('makeup-listing');

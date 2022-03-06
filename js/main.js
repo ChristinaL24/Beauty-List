@@ -5,7 +5,7 @@ var $productDetails = document.querySelector('#product-details');
 
 /* TODO make sure to change website */
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick');
 xhr.responseType = 'json';
 
 /* Function that handles the API */
@@ -83,8 +83,11 @@ function renderListing(listing) {
   /* code to add a data-entry-id to each product listing */
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
 
+  data.view = 'product-lists';
+
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
+
 }
 
 /* Function that handles the title casing for our product name */
@@ -103,7 +106,7 @@ function capitalizeWords(string) {
 function listingHomePage(event) {
   $productDetails.className = 'margin-top hidden';
   $productListing.className = 'row no-padding';
-  data.view = 'product-listing';
+  data.view = 'product-lists';
 }
 
 function detailListingPage(event) {
@@ -119,6 +122,7 @@ function homeButtonClicked(event) {
   if (event.target.tagName === 'I') {
     return listingHomePage();
   }
+  data.view = 'product-lists';
 }
 
 var $productImageDetails = document.querySelector('.product-img-details');
@@ -137,8 +141,9 @@ function productListingClicked(event) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
       $productNameDetails.textContent = xhr.response[i].name;
-      $productPriceDetails.textContent = '$' + xhr.response[i].price;
+      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
     }
   }
+  data.view = 'product-details';
 }
