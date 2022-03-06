@@ -3,7 +3,7 @@ var $productListing = document.querySelector('#product-listing');
 /* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
 
-/* make sure to change website */
+/* TODO make sure to change website */
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
 xhr.responseType = 'json';
@@ -21,7 +21,6 @@ xhr.addEventListener('load', function () {
       entryId: xhr.response[i].id,
       image: xhr.response[i].image_link,
       description: xhr.response[i].description
-
     };
     /* To account for broken links & values in API:
     This condition states that if the price is not strictly equal to zero
@@ -31,7 +30,6 @@ xhr.addEventListener('load', function () {
       $productListing.appendChild(makeUpProducts);
     }
   }
-
 });
 
 xhr.send();
@@ -88,7 +86,6 @@ function renderListing(listing) {
 
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
-
 }
 
 /* Function that handles the title casing for our product name */
@@ -104,12 +101,27 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
+function listingHomePage(event) {
+  $productDetails.className = 'margin-top hidden';
+  $productListing.className = 'row no-padding';
+  data.view = 'product-listing';
+}
+
 /* addEventListener for <li> being clicked */
-$productDetails.addEventListener('click', productDetailsClicked);
-function productDetailsClicked(event) {
-  if (event.target.tagName === 'LI') {
+$productListing.addEventListener('click', productListingClicked);
+function productListingClicked(event) {
+  if (event.target.closest('li')) {
+    /* var getListingItem = event.target.closest('li'); */
+    $productDetails.className = 'margin-top';
     $productListing.className = 'row no-padding hidden';
-    $productDetails.className = 'margin-top view';
-    data.view = 'product-details';
+  }
+}
+
+/* addEventListener for home button being clicked */
+var $homeButton = document.querySelector('#home-button');
+$homeButton.addEventListener('click', homeButtonClicked);
+function homeButtonClicked(event) {
+  if (event.target.tagName === 'I') {
+    return listingHomePage();
   }
 }
