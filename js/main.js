@@ -14,7 +14,6 @@ xhr.addEventListener('load', function () {
   event.preventDefault();
 
   for (var i = 0; i < xhr.response.length; i++) {
-
     var newListing = {
       name: xhr.response[i].name,
       price: xhr.response[i].price,
@@ -51,7 +50,7 @@ function renderListing(listing) {
   var makeUpContainer = document.createElement('ul');
 
   var makeUpListing = document.createElement('li');
-  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right');
+  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
   makeUpContainer.appendChild(makeUpListing);
 
   var firstDiv = document.createElement('div');
@@ -107,13 +106,11 @@ function listingHomePage(event) {
   data.view = 'product-listing';
 }
 
-/*
 function detailListingPage(event) {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
   data.view = 'product-details';
 }
-*/
 
 /* addEventListener for home button being clicked */
 var $homeButton = document.querySelector('#home-button');
@@ -124,18 +121,24 @@ function homeButtonClicked(event) {
   }
 }
 
-/*
-var $productImageDetails = document.querySelector('.product-image-details');
+var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
 
-addEventListener for parent element <ul> that is being clicked
+/* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
-  var getListingItem = event.target.closest('li');
-  var getListingObjectId = parseInt(getListingItem.getAttribute('data-entry-id'));
-  console.log(getListingObjectId);
-}
 
-*/
+  var getListingItem = event.target.closest('li');
+  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  detailListingPage();
+  for (var i = 0; i < xhr.response.length; i++) {
+    if (xhr.response[i].id === getListingId) {
+      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+      $productNameDetails.textContent = xhr.response[i].name;
+      $productPriceDetails.textContent = '$' + xhr.response[i].price;
+      $productDescriptionDetails.textContent = xhr.response[i].description;
+    }
+  }
+}
