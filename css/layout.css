@@ -17,6 +17,10 @@ img {
   width: 100%;
 }
 
+.column-half {
+  width: 50%;
+}
+
 .column-one-third {
   width: calc(100% / 3);
 }
@@ -60,11 +64,18 @@ footer {
   padding-left: 0.5rem;
 }
 
-.inline-align-gap {
+.inline-align {
   display: inline-block;
   display: flex;
   align-items: center;
-  gap: 12.5rem;
+}
+
+.gap {
+  gap: 3rem;
+}
+
+.padding-left {
+  padding-left: 5rem;
 }
 
 .hidden {
@@ -90,10 +101,17 @@ footer {
     padding-right: 2.5rem;
   }
 
-  .inline-align-gap {
+  .inline-align {
     display: inline;
     display: flex;
     align-items: center;
-    gap: 29rem;
+  }
+
+  .gap {
+    gap: 5rem;
+  }
+
+  .padding-left {
+    padding-left: 10rem;
   }
 }

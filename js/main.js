@@ -5,7 +5,7 @@ var $productDetails = document.querySelector('#product-details');
 
 /* TODO make sure to change website */
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
 xhr.responseType = 'json';
 
 /* Function that handles the API */
