@@ -67,3 +67,11 @@ h3 {
   font-family: Montserrat, sans-serif, serif;
   font-weight: 600;
 }
+
+.save-submit-button {
+  color: #9aaef3;
+  background-color: white;
+  font-family: Montserrat, sans-serif, serif;
+  border-radius: 1rem;
+  border-style: none;
+}
