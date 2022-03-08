@@ -1,12 +1,13 @@
 /* exported data */
 var data = {
-  view: 'product-lists'
+  view: 'product-lists',
+  save: []
 };
 
-var previousEntries = localStorage.getItem('makeup-listing');
+var previousListing = localStorage.getItem('makeup-listing');
 
-if (previousEntries !== null) {
-  data = JSON.parse(previousEntries);
+if (previousListing !== null) {
+  data = JSON.parse(previousListing);
 }
 
 window.addEventListener('beforeunload', function (event) {

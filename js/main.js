@@ -147,3 +147,19 @@ function productListingClicked(event) {
   }
   data.view = 'product-details';
 }
+
+/* addEventListener for save
+var $saveSubmitButton = document.querySelector('.save-form');
+$saveSubmitButton.addEventListener('submit', saveSubmitButtonFunction);
+function saveSubmitButtonFunction(event) {
+
+  event.preventDefault();
+
+  var saveListing = {};
+  saveListing.image = $productImageDetails.elements;
+  saveListing.name = $productNameDetails.textContent =
+  saveListing.price = $productPriceDetails.textContent = 'hi';
+
+  data.save.unshift(saveListing);
+}
+*/
