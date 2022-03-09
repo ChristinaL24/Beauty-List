@@ -103,12 +103,6 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function listingHomePage(event) {
-  $productDetails.className = 'margin-top hidden';
-  $productListing.className = 'row no-padding';
-  data.view = 'product-lists';
-}
-
 function detailListingPage(event) {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
@@ -117,11 +111,10 @@ function detailListingPage(event) {
 
 /* addEventListener for home button being clicked */
 var $homeButton = document.querySelector('#home-button');
-$homeButton.addEventListener('click', homeButtonClicked);
-function homeButtonClicked(event) {
-  if (event.target.tagName === 'I') {
-    return listingHomePage();
-  }
+$homeButton.addEventListener('click', listingHomePage);
+function listingHomePage(event) {
+  $productDetails.className = 'margin-top hidden';
+  $productListing.className = 'row no-padding';
   data.view = 'product-lists';
 }
 
@@ -133,9 +126,11 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+  event.preventDefault();
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  data.id = getListingId;
   detailListingPage();
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
@@ -148,18 +143,19 @@ function productListingClicked(event) {
   data.view = 'product-details';
 }
 
-/* addEventListener for save
-var $saveSubmitButton = document.querySelector('.save-form');
-$saveSubmitButton.addEventListener('submit', saveSubmitButtonFunction);
+/* addEventListener for save */
+var $saveSubmitButton = document.querySelector('.save-submit-button');
+$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
 
   event.preventDefault();
-
-  var saveListing = {};
-  saveListing.image = $productImageDetails.elements;
-  saveListing.name = $productNameDetails.textContent =
-  saveListing.price = $productPriceDetails.textContent = 'hi';
-
-  data.save.unshift(saveListing);
+  if (event.target.matches('.save-submit-button')) {
+    var saveListing = {
+      image: $productImageDetails.setAttribute('src'),
+      name: $productNameDetails.textContent = event.target.name,
+      price: $productPriceDetails.textContent = '$' + Number.parseFloat(event.target.price).toFixed(2),
+      id: data.id
+    };
+    data.storage.push(saveListing);
+  }
 }
-*/

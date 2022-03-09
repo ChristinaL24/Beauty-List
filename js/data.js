@@ -1,10 +1,12 @@
 /* exported data */
 var data = {
   view: 'product-lists',
-  save: []
+  storage: [],
+  id: null,
+  save: {}
 };
 
-var previousListing = localStorage.getItem('makeup-listing');
+var previousListing = localStorage.getItem('beauty-list');
 
 if (previousListing !== null) {
   data = JSON.parse(previousListing);
@@ -12,5 +14,5 @@ if (previousListing !== null) {
 
 window.addEventListener('beforeunload', function (event) {
   var makeUpStorage = JSON.stringify(data);
-  localStorage.setItem('makeup-listing', makeUpStorage);
+  localStorage.setItem('beauty-list', makeUpStorage);
 });
