@@ -153,13 +153,27 @@ function productListingClicked(event) {
   data.view = 'product-details';
 }
 
+/* Function that checks if a listing exist within our array of objects */
+function containsObject(object, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (object.id === array[i].id) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /* addEventListener for save */
 var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
 
   event.preventDefault();
+  /* if containObject returns true, data.id will not be pushed. if containObject
+  returns false, it will get pushed into data.save */
   if (event.target.matches('.save-submit-button')) {
-    data.save.push(data.id);
+    if (containsObject(data.id, data.save) !== true) {
+      data.save.push(data.id);
+    }
   }
 }
