@@ -1,4 +1,4 @@
-/* code for <ul> element that holds our list items */
+/* code for <div> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
 /* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
@@ -27,6 +27,7 @@ xhr.addEventListener('load', function () {
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
+
     }
   }
 });
@@ -150,6 +151,8 @@ function productListingClicked(event) {
         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
         id: xhr.response[i].id
       };
+      var savedProducts = renderSavedItems(detailsObject);
+      $savedItemsStorage.appendChild(savedProducts);
       data.id = detailsObject;
     }
   }
@@ -197,4 +200,47 @@ function saveHeartButton(event) {
   $savedItemsStorage.className = 'row no-padding';
   $productDetails.className = 'margin-top hidden';
   data.view = 'saved-items';
+}
+
+function renderSavedItems(listing) {
+
+  event.preventDefault();
+
+  var savedContainer = document.createElement('ul');
+
+  var savedListing = document.createElement('li');
+  savedListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
+  savedContainer.appendChild(savedListing);
+
+  var firstDiv = document.createElement('div');
+  firstDiv.setAttribute('class', 'wrapper row');
+  savedListing.appendChild(firstDiv);
+
+  var secondDiv = document.createElement('div');
+  secondDiv.setAttribute('class', 'column-one-third');
+  firstDiv.appendChild(secondDiv);
+
+  var productImg = document.createElement('img');
+  productImg.setAttribute('src', listing.image);
+  productImg.setAttribute('class', 'product-img-listing');
+  secondDiv.appendChild(productImg);
+
+  var thirdDiv = document.createElement('div');
+  thirdDiv.setAttribute('class', 'column-two-third product-info');
+  firstDiv.appendChild(thirdDiv);
+
+  var productName = document.createElement('h5');
+  productName.textContent = capitalizeWords(listing.name);
+  thirdDiv.appendChild(productName);
+
+  /* Use Number.prototype.toFixed() to format the prices from ending at the tenths
+  place to the hundreths */
+  var productPrice = document.createElement('h5');
+  productPrice.textContent = 'Price: ' + listing.price;
+  thirdDiv.appendChild(productPrice);
+
+  data.view = 'saved-items';
+
+  return savedListing;
+
 }
