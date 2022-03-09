@@ -163,7 +163,7 @@ function containsObject(object, array) {
   return false;
 }
 
-/* addEventListener for save */
+/* addEventListener and function for saving to local storage */
 var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
@@ -176,4 +176,11 @@ function saveSubmitButtonFunction(event) {
       data.save.push(data.id);
     }
   }
+}
+
+/* addEventListener and function for saved button and home page */
+var $saveHeartButton = document.querySelector('#save-heart-button');
+$saveHeartButton.addEventListener('click', saveHeartButton);
+function saveHeartButton(event) {
+
 }
