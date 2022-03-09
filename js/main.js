@@ -130,14 +130,24 @@ function productListingClicked(event) {
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
-  data.id = getListingId;
   detailListingPage();
+
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+
+      /* Create an object to store the values of the details into data.id; push the
+      values from data.id into our data.save in save function */
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id
+      };
+      data.id = detailsObject;
     }
   }
   data.view = 'product-details';
@@ -150,12 +160,6 @@ function saveSubmitButtonFunction(event) {
 
   event.preventDefault();
   if (event.target.matches('.save-submit-button')) {
-    var saveListing = {
-      image: $productImageDetails.setAttribute('src'),
-      name: $productNameDetails.textContent = event.target.name,
-      price: $productPriceDetails.textContent = '$' + Number.parseFloat(event.target.price).toFixed(2),
-      id: data.id
-    };
-    data.storage.push(saveListing);
+    data.save.push(data.id);
   }
 }
