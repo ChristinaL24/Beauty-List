@@ -115,6 +115,8 @@ $homeButton.addEventListener('click', listingHomePage);
 function listingHomePage(event) {
   $productDetails.className = 'margin-top hidden';
   $productListing.className = 'row no-padding';
+  $beautyHeader.className = 'beauty-header';
+  $savedHeader.className = 'saved-header hidden';
   data.view = 'product-lists';
 }
 
@@ -178,9 +180,18 @@ function saveSubmitButtonFunction(event) {
   }
 }
 
+var $savedHeader = document.querySelector('.saved-header');
+var $beautyHeader = document.querySelector('.beauty-header');
+var $savedItemsStorage = document.querySelector('#saved-items');
+
 /* addEventListener and function for saved button and home page */
 var $saveHeartButton = document.querySelector('#save-heart-button');
 $saveHeartButton.addEventListener('click', saveHeartButton);
 function saveHeartButton(event) {
 
+  $savedHeader.className = 'saved-header';
+  $beautyHeader.className = 'beauty-header hidden';
+  $productListing.className = 'row no-padding hidden';
+  $savedItemsStorage.className = 'row no-padding';
+  data.view = 'saved-item';
 }
