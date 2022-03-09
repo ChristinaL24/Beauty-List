@@ -1,15 +1,17 @@
 /* exported data */
 var data = {
-  view: 'product-lists'
+  view: 'product-lists',
+  save: [],
+  id: null
 };
 
-var previousEntries = localStorage.getItem('makeup-listing');
+var previousListing = localStorage.getItem('beauty-list');
 
-if (previousEntries !== null) {
-  data = JSON.parse(previousEntries);
+if (previousListing !== null) {
+  data = JSON.parse(previousListing);
 }
 
 window.addEventListener('beforeunload', function (event) {
   var makeUpStorage = JSON.stringify(data);
-  localStorage.setItem('makeup-listing', makeUpStorage);
+  localStorage.setItem('beauty-list', makeUpStorage);
 });

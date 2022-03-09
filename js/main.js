@@ -5,7 +5,7 @@ var $productDetails = document.querySelector('#product-details');
 
 /* TODO make sure to change website */
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
 xhr.responseType = 'json';
 
 /* Function that handles the API */
@@ -103,12 +103,6 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function listingHomePage(event) {
-  $productDetails.className = 'margin-top hidden';
-  $productListing.className = 'row no-padding';
-  data.view = 'product-lists';
-}
-
 function detailListingPage(event) {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
@@ -117,11 +111,10 @@ function detailListingPage(event) {
 
 /* addEventListener for home button being clicked */
 var $homeButton = document.querySelector('#home-button');
-$homeButton.addEventListener('click', homeButtonClicked);
-function homeButtonClicked(event) {
-  if (event.target.tagName === 'I') {
-    return listingHomePage();
-  }
+$homeButton.addEventListener('click', listingHomePage);
+function listingHomePage(event) {
+  $productDetails.className = 'margin-top hidden';
+  $productListing.className = 'row no-padding';
   data.view = 'product-lists';
 }
 
@@ -133,17 +126,54 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+  event.preventDefault();
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
+
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+
+      /* Create an object to store the values of the details into data.id; push the
+      values from data.id into our data.save in save function */
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id
+      };
+      data.id = detailsObject;
     }
   }
   data.view = 'product-details';
+}
+
+/* Function that checks if a listing exist within our array of objects */
+function containsObject(object, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (object.id === array[i].id) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/* addEventListener for save */
+var $saveSubmitButton = document.querySelector('.save-submit-button');
+$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
+function saveSubmitButtonFunction(event) {
+
+  event.preventDefault();
+  /* if containObject returns true, data.id will not be pushed. if containObject
+  returns false, it will get pushed into data.save */
+  if (event.target.matches('.save-submit-button')) {
+    if (containsObject(data.id, data.save) !== true) {
+      data.save.push(data.id);
+    }
+  }
 }

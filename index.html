@@ -26,23 +26,26 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="column-full inline-align-gap" id="nav-bar">
+          <div class="column-half" id="nav-bar">
             <h2>Beauty List</h2>
+          </div>
+          <div class="column-half inline-align gap padding-left">
             <a href="#" class="home-button">
               <i class="fa-solid fa-house-chimney white" id="home-button"></i>
             </a>
+            <a href="#" class="heart-save-button">
+              <i class="fa-solid fa-heart white" id="save-heart-button"></i>
+            </a>
           </div>
         </div>
+      </div>
     </header>
 
     <main>
       <div class="container">
         <div data-view="product-lists" class="row no-padding" id="product-listing">
-
         </div>
       </div>
-
-
       <div class="container">
         <div data-view="product-details" class="margin-top hidden" id="product-details">
           <div class="row">
@@ -57,13 +60,13 @@
               </h3>
               <h3>Description:</h3>
               <p class="product-description-details"></p>
+              <div class="justify-right margin-bottom">
+                <button type="submit" class="save-submit-button">Save</button>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
-
-
 
     </main>
     <footer>
@@ -77,5 +80,4 @@
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
   </body>
-
 </html>

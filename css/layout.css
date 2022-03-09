@@ -17,6 +17,10 @@ img {
   width: 100%;
 }
 
+.column-half {
+  width: 50%;
+}
+
 .column-one-third {
   width: calc(100% / 3);
 }
@@ -60,11 +64,18 @@ footer {
   padding-left: 0.5rem;
 }
 
-.inline-align-gap {
+.inline-align {
   display: inline-block;
   display: flex;
   align-items: center;
-  gap: 12.5rem;
+}
+
+.gap {
+  gap: 3rem;
+}
+
+.padding-left {
+  padding-left: 2rem;
 }
 
 .hidden {
@@ -73,6 +84,21 @@ footer {
 
 .margin-top {
   margin-top: 1rem;
+}
+
+.save-submit-button {
+  width: 4rem;
+  padding: 0.3rem;
+}
+
+.justify-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+}
+
+.margin-bottom {
+  margin-bottom: 2rem;
 }
 
 /* Media queries should always be last since they are reliant on source order */
@@ -90,10 +116,17 @@ footer {
     padding-right: 2.5rem;
   }
 
-  .inline-align-gap {
+  .inline-align {
     display: inline;
     display: flex;
     align-items: center;
-    gap: 29rem;
+  }
+
+  .gap {
+    gap: 5rem;
+  }
+
+  .padding-left {
+    padding-left: 10rem;
   }
 }
