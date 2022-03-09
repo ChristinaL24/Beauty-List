@@ -117,6 +117,7 @@ function listingHomePage(event) {
   $productListing.className = 'row no-padding';
   $beautyHeader.className = 'beauty-header';
   $savedHeader.className = 'saved-header hidden';
+  $savedItemsStorage.className = 'row no-padding hidden';
   data.view = 'product-lists';
 }
 
@@ -178,6 +179,7 @@ function saveSubmitButtonFunction(event) {
       data.save.push(data.id);
     }
   }
+  saveHeartButton();
 }
 
 var $savedHeader = document.querySelector('.saved-header');
@@ -193,5 +195,6 @@ function saveHeartButton(event) {
   $beautyHeader.className = 'beauty-header hidden';
   $productListing.className = 'row no-padding hidden';
   $savedItemsStorage.className = 'row no-padding';
-  data.view = 'saved-item';
+  $productDetails.className = 'margin-top hidden';
+  data.view = 'saved-items';
 }
