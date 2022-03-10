@@ -106,6 +106,7 @@ function capitalizeWords(string) {
 function detailListingPage(event) {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
+  $savedItemsStorage.className = 'row no-padding hidden';
   data.view = 'product-details';
 }
 
@@ -150,12 +151,11 @@ function productListingClicked(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
-      data.view = 'product-details';
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
     }
-
   }
+  data.view = 'product-details';
 }
 
 /* Function that checks if a listing exist within our array of objects */
@@ -190,9 +190,9 @@ var $savedHeader = document.querySelector('.saved-header');
 var $beautyHeader = document.querySelector('.beauty-header');
 var $savedItemsStorage = document.querySelector('#saved-items');
 
-/* addEventListener and function for saved button and home page */
-var $savedHomePage = document.querySelector('#save-heart-button');
-$savedHomePage.addEventListener('click', savedHomePage);
+/* addEventListener and function for saved button */
+var $savedHomePageButton = document.querySelector('#save-heart-button');
+$savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
 
   $savedHeader.className = 'saved-header';
@@ -205,12 +205,7 @@ function savedHomePage(event) {
   removeAllChildNodes($savedItemsStorage);
 
   for (var i = 0; i < data.save.length; i++) {
-    // var dataSavedItems = {
-    //   name: data.save[i].name,
-    //   price: data.save[i].price,
-    //   image: data.save[i].image,
-    //   id: data.save[i].id
-    // };
+
     var dataSavedItems = data.save[i];
     var savedProductsInStorage = renderSavedItems(dataSavedItems);
     $savedItemsStorage.appendChild(savedProductsInStorage);
@@ -281,12 +276,7 @@ function productDetailRefresh() {
 
 function savedPageRefresh() {
   for (var i = 0; i < data.save.length; i++) {
-    // var dataSavedItems = {
-    //   name: data.save[i].name,
-    //   price: data.save[i].price,
-    //   image: data.save[i].image,
-    //   id: data.save[i].id
-    // };
+
     var dataSavedItems = data.save[i];
 
     var savedProducts = renderSavedItems(dataSavedItems);
@@ -302,4 +292,35 @@ if (data.view === 'product-lists') {
   productDetailRefresh();
 } else if (data.view === 'saved-items') {
   savedPageRefresh();
+}
+
+/* function that renders details on saved page */
+
+$savedItemsStorage.addEventListener('click', savedItemStorageFunction);
+function savedItemStorageFunction(event) {
+
+  var getListingItem = event.target.closest('li');
+  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  detailListingPage();
+
+  for (var i = 0; i < xhr.response.length; i++) {
+    if (xhr.response[i].id === getListingId) {
+      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+      $productNameDetails.textContent = xhr.response[i].name;
+      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
+      $productDescriptionDetails.textContent = xhr.response[i].description;
+
+      /* Create an object to store the values of the details into data.id; push the
+      values from data.id into our data.save in save function */
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
+      };
+      data.id = detailsObject;
+    }
+  }
+  data.view = 'product-details';
 }
