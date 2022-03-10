@@ -157,19 +157,6 @@ function productListingClicked(event) {
   }
 }
 
-function handleRefresh() {
-/* variables needed: image, name, price, and description */
-  var getListingItem = data.id;
-
-  detailListingPage();
-
-  $productImageDetails.setAttribute('src', getListingItem.image);
-  $productNameDetails.textContent = getListingItem.name;
-  $productPriceDetails.textContent = getListingItem.price;
-  $productDescriptionDetails.textContent = getListingItem.description;
-
-}
-
 /* Function that checks if a listing exist within our array of objects */
 function containsObject(object, array) {
   for (var i = 0; i < array.length; i++) {
@@ -212,7 +199,6 @@ function savedHomePage(event) {
   $productListing.className = 'row no-padding hidden';
   $savedItemsStorage.className = 'row no-padding';
   $productDetails.className = 'margin-top hidden';
-  data.view = 'saved-items';
 
   /* this removes all the duplicate children before appending them again */
   removeAllChildNodes($savedItemsStorage);
@@ -226,6 +212,7 @@ function savedHomePage(event) {
     };
     var savedProducts = renderSavedItems(dataSavedItems);
     $savedItemsStorage.appendChild(savedProducts);
+    data.view = 'saved-items';
   }
 }
 
@@ -238,8 +225,6 @@ function removeAllChildNodes(parent) {
 
 /* Dom Tree for saved items page */
 function renderSavedItems(listing) {
-
-  event.preventDefault();
 
   var savedContainer = document.createElement('ul');
 
@@ -279,12 +264,38 @@ function renderSavedItems(listing) {
   return savedListing;
 }
 
-/* Condition for refresh */
+/* 'click' event functions cannot be called when we refresh. Create another function
+to handle the refresh with values we have in our local storage */
+function productDetailRefresh() {
 
+  var getListingItem = data.id;
+  detailListingPage();
+
+  $productImageDetails.setAttribute('src', getListingItem.image);
+  $productNameDetails.textContent = getListingItem.name;
+  $productPriceDetails.textContent = getListingItem.price;
+  $productDescriptionDetails.textContent = getListingItem.description;
+}
+
+function savedPageRefresh() {
+  for (var i = 0; i < data.save.length; i++) {
+    var dataSavedItems = {
+      name: data.save[i].name,
+      price: data.save[i].price,
+      image: data.save[i].image,
+      id: data.save[i].id
+    };
+    var savedProducts = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProducts);
+    savedHomePage();
+  }
+}
+
+/* Condition for refresh */
 if (data.view === 'product-lists') {
   listingHomePage();
 } else if (data.view === 'product-details') {
-  handleRefresh();
+  productDetailRefresh();
 } else if (data.view === 'saved-items') {
-  savedHomePage();
+  savedPageRefresh();
 }
