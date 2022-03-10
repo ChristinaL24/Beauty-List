@@ -1,6 +1,6 @@
 /* exported data */
 var data = {
-  view: 'product-lists',
+  view: '',
   save: [],
   id: null
 };

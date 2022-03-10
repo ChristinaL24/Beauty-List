@@ -131,8 +131,6 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
 
-  event.preventDefault();
-
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
@@ -150,12 +148,26 @@ function productListingClicked(event) {
         image: xhr.response[i].image_link,
         name: xhr.response[i].name,
         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
-        id: xhr.response[i].id
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
       };
       data.id = detailsObject;
       data.view = 'product-details';
     }
   }
+}
+
+function handleRefresh() {
+/* variables needed: image, name, price, and description */
+  var getListingItem = data.id;
+
+  detailListingPage();
+
+  $productImageDetails.setAttribute('src', getListingItem.image);
+  $productNameDetails.textContent = getListingItem.name;
+  $productPriceDetails.textContent = getListingItem.price;
+  $productDescriptionDetails.textContent = getListingItem.description;
+
 }
 
 /* Function that checks if a listing exist within our array of objects */
@@ -267,14 +279,12 @@ function renderSavedItems(listing) {
   return savedListing;
 }
 
-/* Condition for refresh
+/* Condition for refresh */
 
 if (data.view === 'product-lists') {
   listingHomePage();
 } else if (data.view === 'product-details') {
-  detailListingPage();
+  handleRefresh();
 } else if (data.view === 'saved-items') {
   savedHomePage();
 }
-
-*/
