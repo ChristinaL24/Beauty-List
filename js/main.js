@@ -129,7 +129,6 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
-
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
@@ -152,7 +151,10 @@ function productListingClicked(event) {
       };
       data.id = detailsObject;
       data.view = 'product-details';
+      var savedProducts = renderSavedItems(detailsObject);
+      $savedItemsStorage.appendChild(savedProducts);
     }
+
   }
 }
 
@@ -203,14 +205,15 @@ function savedHomePage(event) {
   removeAllChildNodes($savedItemsStorage);
 
   for (var i = 0; i < data.save.length; i++) {
-    var dataSavedItems = {
-      name: data.save[i].name,
-      price: data.save[i].price,
-      image: data.save[i].image,
-      id: data.save[i].id
-    };
-    var savedProducts = renderSavedItems(dataSavedItems);
-    $savedItemsStorage.appendChild(savedProducts);
+    // var dataSavedItems = {
+    //   name: data.save[i].name,
+    //   price: data.save[i].price,
+    //   image: data.save[i].image,
+    //   id: data.save[i].id
+    // };
+    var dataSavedItems = data.save[i];
+    var savedProductsInStorage = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProductsInStorage);
     data.view = 'saved-items';
   }
 }
@@ -278,12 +281,14 @@ function productDetailRefresh() {
 
 function savedPageRefresh() {
   for (var i = 0; i < data.save.length; i++) {
-    var dataSavedItems = {
-      name: data.save[i].name,
-      price: data.save[i].price,
-      image: data.save[i].image,
-      id: data.save[i].id
-    };
+    // var dataSavedItems = {
+    //   name: data.save[i].name,
+    //   price: data.save[i].price,
+    //   image: data.save[i].image,
+    //   id: data.save[i].id
+    // };
+    var dataSavedItems = data.save[i];
+
     var savedProducts = renderSavedItems(dataSavedItems);
     $savedItemsStorage.appendChild(savedProducts);
     savedHomePage();
