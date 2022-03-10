@@ -1,4 +1,4 @@
-/* code for <ul> element that holds our list items */
+/* code for <div> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
 /* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
@@ -35,6 +35,8 @@ xhr.send();
 
 /* Function that takes product listing object and returns a DOM TREE for home page */
 function renderListing(listing) {
+
+  event.preventDefault();
 
   /* addEventListener for broken images:
   Used ./ because one dot represents the current directory;
@@ -87,12 +89,10 @@ function renderListing(listing) {
 
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
-
 }
 
 /* Function that handles the title casing for our product name */
 function capitalizeWords(string) {
-
   var array = string.split(' ');
   var newString = '';
   for (var i = 0; i < array.length; i++) {
@@ -106,6 +106,7 @@ function capitalizeWords(string) {
 function detailListingPage(event) {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
+  $savedItemsStorage.className = 'row no-padding hidden';
   data.view = 'product-details';
 }
 
@@ -115,6 +116,9 @@ $homeButton.addEventListener('click', listingHomePage);
 function listingHomePage(event) {
   $productDetails.className = 'margin-top hidden';
   $productListing.className = 'row no-padding';
+  $beautyHeader.className = 'beauty-header';
+  $savedHeader.className = 'saved-header hidden';
+  $savedItemsStorage.className = 'row no-padding hidden';
   data.view = 'product-lists';
 }
 
@@ -126,7 +130,174 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+  var getListingItem = event.target.closest('li');
+  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  detailListingPage();
+
+  for (var i = 0; i < xhr.response.length; i++) {
+    if (xhr.response[i].id === getListingId) {
+      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+      $productNameDetails.textContent = xhr.response[i].name;
+      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
+      $productDescriptionDetails.textContent = xhr.response[i].description;
+
+      /* Create an object to store the values of the details into data.id; push the
+      values from data.id into our data.save in save function */
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
+      };
+      data.id = detailsObject;
+      var savedProducts = renderSavedItems(detailsObject);
+      $savedItemsStorage.appendChild(savedProducts);
+    }
+  }
+  data.view = 'product-details';
+}
+
+/* Function that checks if a listing exist within our array of objects */
+function containsObject(object, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (object.id === array[i].id) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/* addEventListener and function for saving to local storage */
+var $saveSubmitButton = document.querySelector('.save-submit-button');
+$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
+function saveSubmitButtonFunction(event) {
+
   event.preventDefault();
+
+  /* if containObject returns true, data.id will not be pushed. if containObject
+  returns false, it will get pushed into data.save */
+  if (event.target.matches('.save-submit-button')) {
+    savedHomePage();
+    if (containsObject(data.id, data.save) !== true) {
+      data.save.push(data.id);
+      savedHomePage();
+    }
+  }
+}
+
+var $savedHeader = document.querySelector('.saved-header');
+var $beautyHeader = document.querySelector('.beauty-header');
+var $savedItemsStorage = document.querySelector('#saved-items');
+
+/* addEventListener and function for saved button */
+var $savedHomePageButton = document.querySelector('#save-heart-button');
+$savedHomePageButton.addEventListener('click', savedHomePage);
+function savedHomePage(event) {
+
+  $savedHeader.className = 'saved-header';
+  $beautyHeader.className = 'beauty-header hidden';
+  $productListing.className = 'row no-padding hidden';
+  $savedItemsStorage.className = 'row no-padding';
+  $productDetails.className = 'margin-top hidden';
+
+  /* this removes all the duplicate children before appending them again */
+  removeAllChildNodes($savedItemsStorage);
+
+  for (var i = 0; i < data.save.length; i++) {
+
+    var dataSavedItems = data.save[i];
+    var savedProductsInStorage = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProductsInStorage);
+    data.view = 'saved-items';
+  }
+}
+
+/* function that removes all child nodes under parent */
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+/* Dom Tree for saved items page */
+function renderSavedItems(listing) {
+
+  var savedContainer = document.createElement('ul');
+
+  var savedListing = document.createElement('li');
+  savedListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
+  savedContainer.appendChild(savedListing);
+
+  var firstDiv = document.createElement('div');
+  firstDiv.setAttribute('class', 'wrapper row');
+  savedListing.appendChild(firstDiv);
+
+  var secondDiv = document.createElement('div');
+  secondDiv.setAttribute('class', 'column-one-third');
+  firstDiv.appendChild(secondDiv);
+
+  var productImg = document.createElement('img');
+  productImg.setAttribute('src', listing.image);
+  productImg.setAttribute('class', 'product-img-listing');
+  secondDiv.appendChild(productImg);
+
+  var thirdDiv = document.createElement('div');
+  thirdDiv.setAttribute('class', 'column-two-third product-info');
+  firstDiv.appendChild(thirdDiv);
+
+  var productName = document.createElement('h5');
+  productName.textContent = capitalizeWords(listing.name);
+  thirdDiv.appendChild(productName);
+
+  var productPrice = document.createElement('h5');
+  productPrice.textContent = 'Price: ' + listing.price;
+  thirdDiv.appendChild(productPrice);
+
+  savedListing.setAttribute('data-entry-id', listing.id);
+
+  data.view = 'saved-items';
+
+  return savedListing;
+}
+
+/* 'click' event functions cannot be called when we refresh. Create another function
+to handle the refresh with values we have in our local storage */
+function productDetailRefresh() {
+
+  var getListingItem = data.id;
+  detailListingPage();
+
+  $productImageDetails.setAttribute('src', getListingItem.image);
+  $productNameDetails.textContent = getListingItem.name;
+  $productPriceDetails.textContent = getListingItem.price;
+  $productDescriptionDetails.textContent = getListingItem.description;
+}
+
+function savedPageRefresh() {
+  for (var i = 0; i < data.save.length; i++) {
+
+    var dataSavedItems = data.save[i];
+
+    var savedProducts = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProducts);
+    savedHomePage();
+  }
+}
+
+/* Condition for refresh */
+if (data.view === 'product-lists') {
+  listingHomePage();
+} else if (data.view === 'product-details') {
+  productDetailRefresh();
+} else if (data.view === 'saved-items') {
+  savedPageRefresh();
+}
+
+/* function that renders details on saved page */
+
+$savedItemsStorage.addEventListener('click', savedItemStorageFunction);
+function savedItemStorageFunction(event) {
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
@@ -145,35 +316,11 @@ function productListingClicked(event) {
         image: xhr.response[i].image_link,
         name: xhr.response[i].name,
         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
-        id: xhr.response[i].id
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
       };
       data.id = detailsObject;
     }
   }
   data.view = 'product-details';
-}
-
-/* Function that checks if a listing exist within our array of objects */
-function containsObject(object, array) {
-  for (var i = 0; i < array.length; i++) {
-    if (object.id === array[i].id) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/* addEventListener for save */
-var $saveSubmitButton = document.querySelector('.save-submit-button');
-$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
-function saveSubmitButtonFunction(event) {
-
-  event.preventDefault();
-  /* if containObject returns true, data.id will not be pushed. if containObject
-  returns false, it will get pushed into data.save */
-  if (event.target.matches('.save-submit-button')) {
-    if (containsObject(data.id, data.save) !== true) {
-      data.save.push(data.id);
-    }
-  }
 }

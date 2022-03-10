@@ -27,7 +27,8 @@
       <div class="container">
         <div class="row">
           <div class="column-half" id="nav-bar">
-            <h2>Beauty List</h2>
+            <h2 class="beauty-header">Beauty List</h2>
+            <h2 class="saved-header hidden">Saved Items</h2>
           </div>
           <div class="column-half inline-align gap padding-left">
             <a href="#" class="home-button">
@@ -45,6 +46,11 @@
       <div class="container">
         <div data-view="product-lists" class="row no-padding" id="product-listing">
         </div>
+
+        <div data-view="saved-items" class="row no-padding hidden" id="saved-items">
+
+        </div>
+
       </div>
       <div class="container">
         <div data-view="product-details" class="margin-top hidden" id="product-details">
@@ -53,6 +59,7 @@
               <img src=" "
                 class="product-img-details">
             </div>
+
             <div class="column-desktop-half">
               <h3>Product Name: <span class="product-name-span"></span>
               </h3>
@@ -66,8 +73,9 @@
             </div>
           </div>
         </div>
-      </div>
 
+
+      </div>
     </main>
     <footer>
       <div class="container">

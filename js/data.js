@@ -1,8 +1,9 @@
 /* exported data */
 var data = {
-  view: 'product-lists',
+  view: '',
   save: [],
-  id: null
+  id: null,
+  results: []
 };
 
 var previousListing = localStorage.getItem('beauty-list');
