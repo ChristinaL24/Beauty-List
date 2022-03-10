@@ -37,6 +37,8 @@ xhr.send();
 /* Function that takes product listing object and returns a DOM TREE for home page */
 function renderListing(listing) {
 
+  event.preventDefault();
+
   /* addEventListener for broken images:
   Used ./ because one dot represents the current directory;
   querySelectorAll returns a nodes list aka an array so the 'for
@@ -88,12 +90,10 @@ function renderListing(listing) {
 
   return makeUpListing;
   /* use renderListing(xhr.response[index]) to check if it printed correctly */
-
 }
 
 /* Function that handles the title casing for our product name */
 function capitalizeWords(string) {
-
   var array = string.split(' ');
   var newString = '';
   for (var i = 0; i < array.length; i++) {
@@ -130,6 +130,7 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+
   event.preventDefault();
 
   var getListingItem = event.target.closest('li');
@@ -151,12 +152,10 @@ function productListingClicked(event) {
         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
         id: xhr.response[i].id
       };
-      var savedProducts = renderSavedItems(detailsObject);
-      $savedItemsStorage.appendChild(savedProducts);
       data.id = detailsObject;
+      data.view = 'product-details';
     }
   }
-  data.view = 'product-details';
 }
 
 /* Function that checks if a listing exist within our array of objects */
@@ -175,14 +174,16 @@ $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
 
   event.preventDefault();
+
   /* if containObject returns true, data.id will not be pushed. if containObject
   returns false, it will get pushed into data.save */
   if (event.target.matches('.save-submit-button')) {
+    savedHomePage();
     if (containsObject(data.id, data.save) !== true) {
       data.save.push(data.id);
     }
   }
-  saveHeartButton();
+  data.view = 'product-lists';
 }
 
 var $savedHeader = document.querySelector('.saved-header');
@@ -190,9 +191,9 @@ var $beautyHeader = document.querySelector('.beauty-header');
 var $savedItemsStorage = document.querySelector('#saved-items');
 
 /* addEventListener and function for saved button and home page */
-var $saveHeartButton = document.querySelector('#save-heart-button');
-$saveHeartButton.addEventListener('click', saveHeartButton);
-function saveHeartButton(event) {
+var $savedHomePage = document.querySelector('#save-heart-button');
+$savedHomePage.addEventListener('click', savedHomePage);
+function savedHomePage(event) {
 
   $savedHeader.className = 'saved-header';
   $beautyHeader.className = 'beauty-header hidden';
@@ -200,8 +201,30 @@ function saveHeartButton(event) {
   $savedItemsStorage.className = 'row no-padding';
   $productDetails.className = 'margin-top hidden';
   data.view = 'saved-items';
+
+  /* this removes all the duplicate children before appending them again */
+  removeAllChildNodes($savedItemsStorage);
+
+  for (var i = 0; i < data.save.length; i++) {
+    var dataSavedItems = {
+      name: data.save[i].name,
+      price: data.save[i].price,
+      image: data.save[i].image,
+      id: data.save[i].id
+    };
+    var savedProducts = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProducts);
+  }
 }
 
+/* function that removes all child nodes under parent */
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+/* Dom Tree for saved items page */
 function renderSavedItems(listing) {
 
   event.preventDefault();
@@ -233,14 +256,25 @@ function renderSavedItems(listing) {
   productName.textContent = capitalizeWords(listing.name);
   thirdDiv.appendChild(productName);
 
-  /* Use Number.prototype.toFixed() to format the prices from ending at the tenths
-  place to the hundreths */
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: ' + listing.price;
   thirdDiv.appendChild(productPrice);
 
+  savedListing.setAttribute('data-entry-id', listing.id);
+
   data.view = 'saved-items';
 
   return savedListing;
-
 }
+
+/* Condition for refresh
+
+if (data.view === 'product-lists') {
+  listingHomePage();
+} else if (data.view === 'product-details') {
+  detailListingPage();
+} else if (data.view === 'saved-items') {
+  savedHomePage();
+}
+
+*/
