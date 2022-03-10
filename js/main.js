@@ -27,7 +27,6 @@ xhr.addEventListener('load', function () {
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
-
     }
   }
 });
