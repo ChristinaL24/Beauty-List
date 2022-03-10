@@ -181,9 +181,9 @@ function saveSubmitButtonFunction(event) {
     savedHomePage();
     if (containsObject(data.id, data.save) !== true) {
       data.save.push(data.id);
+      savedHomePage();
     }
   }
-  data.view = 'product-lists';
 }
 
 var $savedHeader = document.querySelector('.saved-header');
