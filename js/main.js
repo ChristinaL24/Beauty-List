@@ -126,6 +126,7 @@ var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
+var $productListingId = document.querySelector('.itemId');
 
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
@@ -141,6 +142,7 @@ function productListingClicked(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+      $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
       /* Create an object to store the values of the details into data.id; push the
       values from data.id into our data.save in save function */
@@ -313,6 +315,7 @@ function savedItemStorageFunction(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+      $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
       /* Create an object to store the values of the details into data.id; push the
       values from data.id into our data.save in save function */
@@ -333,6 +336,8 @@ function savedItemStorageFunction(event) {
 /* event listener for trash can icon in saved page */
 var $deleteButton = document.querySelector('.delete-button');
 $deleteButton.addEventListener('click', deleteButtonFunction);
+
 function deleteButtonFunction(event) {
 
+  savedHomePage();
 }
