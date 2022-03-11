@@ -252,7 +252,11 @@ function renderSavedItems(listing) {
 
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: ' + listing.price;
+  productPrice.setAttribute('class', 'display-gap');
+  var trashIcon = document.createElement('i');
+  trashIcon.className = 'fa-solid fa-trash-can';
   thirdDiv.appendChild(productPrice);
+  productPrice.appendChild(trashIcon);
 
   savedListing.setAttribute('data-entry-id', listing.id);
 
