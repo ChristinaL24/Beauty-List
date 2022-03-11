@@ -3,9 +3,8 @@ var $productListing = document.querySelector('#product-listing');
 /* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
 
-/* TODO make sure to change website */
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json');
 xhr.responseType = 'json';
 
 /* Function that handles the API */
