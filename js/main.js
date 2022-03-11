@@ -154,7 +154,7 @@ function productListingClicked(event) {
       data.id = detailsObject;
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
-      $trashCanIcon.className = 'delete-button hidden';
+      $deleteButton.className = 'delete-button hidden';
       $saveSubmitButton.className = 'save-submit-button';
     }
   }
@@ -324,11 +324,15 @@ function savedItemStorageFunction(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
-      $trashCanIcon.className = 'delete-button';
+      $deleteButton.className = 'delete-button';
       $saveSubmitButton.className = 'save-submit-button hidden';
     }
   }
 }
 
 /* event listener for trash can icon in saved page */
-var $trashCanIcon = document.querySelector('.delete-button');
+var $deleteButton = document.querySelector('.delete-button');
+$deleteButton.addEventListener('click', deleteButtonFunction);
+function deleteButtonFunction(event) {
+
+}
