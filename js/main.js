@@ -315,7 +315,7 @@ function savedItemStorageFunction(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
-      $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
+      $productListingId.setAttribute('data-entry-id', getListingId);
 
       /* Create an object to store the values of the details into data.id; push the
       values from data.id into our data.save in save function */
@@ -339,5 +339,14 @@ $deleteButton.addEventListener('click', deleteButtonFunction);
 
 function deleteButtonFunction(event) {
 
+  if (event.target.matches('.delete-button')) {
+    savedHomePage();
+  } if (containsObject(data.id, data.save) === true) {
+    for (var i = 0; i < data.save.length; i++) {
+      if (data.id.id === data.save[i].id) {
+        data.save.splice(i, 1);
+      }
+    }
+  }
   savedHomePage();
 }
