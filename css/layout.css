@@ -31,7 +31,7 @@ img {
 
 .wrapper {
   margin: 0.5rem 0;
-  height: 100px;
+  height: 6.3rem;
   width: 100%;
 }
 
@@ -45,8 +45,6 @@ img {
   padding-left: 0;
 }
 
-/* code for footer */
-
 body {
   display: flex;
   flex-direction: column;
@@ -57,8 +55,6 @@ footer {
   margin-top: auto;
   padding-top: 2rem;
 }
-
-/* code for footer  */
 
 .product-info {
   padding-left: 0.5rem;
@@ -106,8 +102,6 @@ footer {
   display: flex;
   gap: 5rem;
 }
-
-/* Media queries should always be last since they are reliant on source order */
 
 @media screen and (min-width: 750px) {
   .container {
