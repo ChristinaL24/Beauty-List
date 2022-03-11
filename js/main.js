@@ -103,7 +103,7 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function detailListingPage(event) {
+function detailListingPage() {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
   $savedItemsStorage.className = 'row no-padding hidden';
@@ -327,13 +327,13 @@ function savedItemStorageFunction(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
-      $deleteButton.className = 'delete-button';
       $saveSubmitButton.className = 'save-submit-button hidden';
+      $deleteButton.className = 'delete-button';
     }
   }
 }
 
-/* event listener for trash can icon in saved page */
+/* event listener for delete in saved page */
 var $deleteButton = document.querySelector('.delete-button');
 $deleteButton.addEventListener('click', deleteButtonFunction);
 
