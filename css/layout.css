@@ -4,6 +4,13 @@
   max-width: 600px;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 525px;
+}
+
 img {
   width: 100%;
 }
@@ -40,12 +47,6 @@ img {
 
 .no-padding {
   padding-left: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 footer {
@@ -100,6 +101,15 @@ footer {
   gap: 5rem;
 }
 
+.loading {
+  color: official;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 15rem;
+  top: 15rem;
+}
+
 @media screen and (min-width: 750px) {
   .container {
     max-width: 800px;
@@ -125,5 +135,43 @@ footer {
 
   .padding-left {
     padding-left: 10rem;
+  }
+
+  .loading {
+    left: 20rem;
+    top: 15rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  .column-desktop-half {
+    width: 50%;
+  }
+
+  .padding-right {
+    padding-right: 5rem;
+  }
+
+  .inline-align {
+    display: inline;
+    display: flex;
+    align-items: center;
+  }
+
+  .gap {
+    gap: 6rem;
+  }
+
+  .padding-left {
+    padding-left: 12rem;
+  }
+
+  .loading {
+    left: 35rem;
+    top: 15rem;
   }
 }
