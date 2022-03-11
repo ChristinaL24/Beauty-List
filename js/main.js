@@ -130,6 +130,7 @@ var $productDescriptionDetails = document.querySelector('.product-description-de
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
@@ -153,6 +154,8 @@ function productListingClicked(event) {
       data.id = detailsObject;
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
+      $trashCanIcon.className = 'delete-button hidden';
+      $saveSubmitButton.className = 'save-submit-button';
     }
   }
   data.view = 'product-details';
@@ -253,10 +256,7 @@ function renderSavedItems(listing) {
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: ' + listing.price;
   productPrice.setAttribute('class', 'display-gap');
-  var trashIcon = document.createElement('i');
-  trashIcon.className = 'fa-solid fa-trash-can';
   thirdDiv.appendChild(productPrice);
-  productPrice.appendChild(trashIcon);
 
   savedListing.setAttribute('data-entry-id', listing.id);
 
@@ -276,6 +276,7 @@ function productDetailRefresh() {
   $productNameDetails.textContent = getListingItem.name;
   $productPriceDetails.textContent = getListingItem.price;
   $productDescriptionDetails.textContent = getListingItem.description;
+
 }
 
 function savedPageRefresh() {
@@ -299,7 +300,6 @@ if (data.view === 'product-lists') {
 }
 
 /* function that renders details on saved page */
-
 $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
 function savedItemStorageFunction(event) {
 
@@ -324,7 +324,11 @@ function savedItemStorageFunction(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
+      $trashCanIcon.className = 'delete-button';
+      $saveSubmitButton.className = 'save-submit-button hidden';
     }
   }
-  data.view = 'product-details';
 }
+
+/* event listener for trash can icon in saved page */
+var $trashCanIcon = document.querySelector('.delete-button');

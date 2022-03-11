@@ -86,7 +86,8 @@ footer {
   margin-top: 1rem;
 }
 
-.save-submit-button {
+.save-submit-button,
+.delete-button {
   width: 4rem;
   padding: 0.3rem;
 }
