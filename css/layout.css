@@ -32,12 +32,9 @@ img {
 .wrapper {
   margin: 0.5rem 0;
   height: 6.3rem;
-  width: 100%;
 }
 
 .product-img-listing {
-  width: 100%;
-  object-fit: fill;
   height: 6.25rem;
 }
 
