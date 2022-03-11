@@ -3,7 +3,7 @@ var $productDetails = document.querySelector('#product-details');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json');
 xhr.responseType = 'json';
 
 $loadingDiv.className = 'loading';
