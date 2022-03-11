@@ -47,11 +47,6 @@ i {
   line-height: 1.5rem;
 }
 
-li:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
-
 .product-name-span,
 .product-price-span {
   font-weight: normal;
@@ -77,10 +72,12 @@ h3 {
   border-style: none;
 }
 
-.save-submit-button:hover {
+.save-submit-button:hover,
+.delete-button:hover,
+li:hover {
   cursor: pointer;
 }
 
-.delete-button:hover {
-  cursor: pointer;
+li:hover {
+  transform: scale(1.1);
 }
