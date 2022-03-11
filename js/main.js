@@ -1,9 +1,12 @@
 var $productListing = document.querySelector('#product-listing');
 var $productDetails = document.querySelector('#product-details');
+var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
+xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline');
 xhr.responseType = 'json';
+
+$loadingDiv.className = 'loading';
 
 xhr.addEventListener('load', function () {
 
@@ -22,9 +25,12 @@ xhr.addEventListener('load', function () {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
     }
+    if (xhr.response >= 400) {
+      console.error('Sorry! There is an error with this request');
+    }
   }
+  $loadingDiv.className = 'loading hidden';
 });
-
 xhr.send();
 
 function renderListing(listing) {

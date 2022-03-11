@@ -101,6 +101,15 @@ footer {
   gap: 5rem;
 }
 
+.loading {
+  color: official;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 15rem;
+  top: 15rem;
+}
+
 @media screen and (min-width: 750px) {
   .container {
     max-width: 800px;
@@ -126,6 +135,11 @@ footer {
 
   .padding-left {
     padding-left: 10rem;
+  }
+
+  .loading {
+    left: 20rem;
+    top: 15rem;
   }
 }
 
@@ -154,5 +168,10 @@ footer {
 
   .padding-left {
     padding-left: 12rem;
+  }
+
+  .loading {
+    left: 35rem;
+    top: 15rem;
   }
 }
