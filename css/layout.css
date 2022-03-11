@@ -86,7 +86,8 @@ footer {
   margin-top: 1rem;
 }
 
-.save-submit-button {
+.save-submit-button,
+.delete-button {
   width: 4rem;
   padding: 0.3rem;
 }
@@ -99,6 +100,11 @@ footer {
 
 .margin-bottom {
   margin-bottom: 2rem;
+}
+
+.display-gap {
+  display: flex;
+  gap: 5rem;
 }
 
 /* Media queries should always be last since they are reliant on source order */

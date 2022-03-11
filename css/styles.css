@@ -68,7 +68,8 @@ h3 {
   font-weight: 600;
 }
 
-.save-submit-button {
+.save-submit-button,
+.delete-button {
   color: #9aaef3;
   background-color: white;
   font-family: Montserrat, sans-serif, serif;
@@ -77,5 +78,9 @@ h3 {
 }
 
 .save-submit-button:hover {
+  cursor: pointer;
+}
+
+.delete-button:hover {
   cursor: pointer;
 }

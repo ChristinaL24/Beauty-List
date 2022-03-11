@@ -103,7 +103,7 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function detailListingPage(event) {
+function detailListingPage() {
   $productDetails.className = 'margin-top';
   $productListing.className = 'row no-padding hidden';
   $savedItemsStorage.className = 'row no-padding hidden';
@@ -126,10 +126,12 @@ var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
+var $productListingId = document.querySelector('.itemId');
 
 /* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
+
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
@@ -140,6 +142,7 @@ function productListingClicked(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+      $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
       /* Create an object to store the values of the details into data.id; push the
       values from data.id into our data.save in save function */
@@ -153,6 +156,8 @@ function productListingClicked(event) {
       data.id = detailsObject;
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
+      $deleteButton.className = 'delete-button hidden';
+      $saveSubmitButton.className = 'save-submit-button';
     }
   }
   data.view = 'product-details';
@@ -252,6 +257,7 @@ function renderSavedItems(listing) {
 
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: ' + listing.price;
+  productPrice.setAttribute('class', 'display-gap');
   thirdDiv.appendChild(productPrice);
 
   savedListing.setAttribute('data-entry-id', listing.id);
@@ -272,6 +278,7 @@ function productDetailRefresh() {
   $productNameDetails.textContent = getListingItem.name;
   $productPriceDetails.textContent = getListingItem.price;
   $productDescriptionDetails.textContent = getListingItem.description;
+
 }
 
 function savedPageRefresh() {
@@ -295,7 +302,6 @@ if (data.view === 'product-lists') {
 }
 
 /* function that renders details on saved page */
-
 $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
 function savedItemStorageFunction(event) {
 
@@ -309,6 +315,7 @@ function savedItemStorageFunction(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
+      $productListingId.setAttribute('data-entry-id', getListingId);
 
       /* Create an object to store the values of the details into data.id; push the
       values from data.id into our data.save in save function */
@@ -320,7 +327,26 @@ function savedItemStorageFunction(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
+      $saveSubmitButton.className = 'save-submit-button hidden';
+      $deleteButton.className = 'delete-button';
     }
   }
-  data.view = 'product-details';
+}
+
+/* event listener for delete in saved page */
+var $deleteButton = document.querySelector('.delete-button');
+$deleteButton.addEventListener('click', deleteButtonFunction);
+
+function deleteButtonFunction(event) {
+
+  if (event.target.matches('.delete-button')) {
+    savedHomePage();
+  } if (containsObject(data.id, data.save) === true) {
+    for (var i = 0; i < data.save.length; i++) {
+      if (data.id.id === data.save[i].id) {
+        data.save.splice(i, 1);
+      }
+    }
+  }
+  savedHomePage();
 }
