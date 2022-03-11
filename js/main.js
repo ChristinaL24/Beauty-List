@@ -1,13 +1,10 @@
-/* code for <div> element that holds our list items */
 var $productListing = document.querySelector('#product-listing');
-/* code for <div> that holds our value for the detail page */
 var $productDetails = document.querySelector('#product-details');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=covergirl&product_type=lipstick');
 xhr.responseType = 'json';
 
-/* Function that handles the API */
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
@@ -20,9 +17,7 @@ xhr.addEventListener('load', function () {
       image: xhr.response[i].image_link,
       description: xhr.response[i].description
     };
-    /* To account for broken links & values in API:
-    This condition states that if the price is not strictly equal to zero
-    or null, then to append it to our listing */
+
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
@@ -32,15 +27,10 @@ xhr.addEventListener('load', function () {
 
 xhr.send();
 
-/* Function that takes product listing object and returns a DOM TREE for home page */
 function renderListing(listing) {
 
   event.preventDefault();
 
-  /* addEventListener for broken images:
-  Used ./ because one dot represents the current directory;
-  querySelectorAll returns a nodes list aka an array so the 'for
-  each' function was used in this case to help target all images */
   var $imgBroken = document.querySelectorAll('img');
   [].forEach.call($imgBroken, function (event) {
     event.addEventListener('error', function (event) {
@@ -75,22 +65,17 @@ function renderListing(listing) {
   productName.textContent = capitalizeWords(listing.name);
   thirdDiv.appendChild(productName);
 
-  /* Use Number.prototype.toFixed() to format the prices from ending at the tenths
-  place to the hundreths */
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
   thirdDiv.appendChild(productPrice);
 
-  /* code to add a data-entry-id to each product listing */
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
 
   data.view = 'product-lists';
 
   return makeUpListing;
-  /* use renderListing(xhr.response[index]) to check if it printed correctly */
 }
 
-/* Function that handles the title casing for our product name */
 function capitalizeWords(string) {
   var array = string.split(' ');
   var newString = '';
@@ -109,7 +94,6 @@ function detailListingPage() {
   data.view = 'product-details';
 }
 
-/* addEventListener for home button being clicked */
 var $homeButton = document.querySelector('#home-button');
 $homeButton.addEventListener('click', listingHomePage);
 function listingHomePage(event) {
@@ -127,7 +111,6 @@ var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
 var $productListingId = document.querySelector('.itemId');
 
-/* addEventListener for parent element <ul> that is being clicked */
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
 
@@ -143,8 +126,6 @@ function productListingClicked(event) {
       $productDescriptionDetails.textContent = xhr.response[i].description;
       $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
-      /* Create an object to store the values of the details into data.id; push the
-      values from data.id into our data.save in save function */
       var detailsObject = {
         image: xhr.response[i].image_link,
         name: xhr.response[i].name,
@@ -162,7 +143,6 @@ function productListingClicked(event) {
   data.view = 'product-details';
 }
 
-/* Function that checks if a listing exist within our array of objects */
 function containsObject(object, array) {
   for (var i = 0; i < array.length; i++) {
     if (object.id === array[i].id) {
@@ -172,15 +152,12 @@ function containsObject(object, array) {
   return false;
 }
 
-/* addEventListener and function for saving to local storage */
 var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
 
   event.preventDefault();
 
-  /* if containObject returns true, data.id will not be pushed. if containObject
-  returns false, it will get pushed into data.save */
   if (event.target.matches('.save-submit-button')) {
     savedHomePage();
     if (containsObject(data.id, data.save) !== true) {
@@ -194,7 +171,6 @@ var $savedHeader = document.querySelector('.saved-header');
 var $beautyHeader = document.querySelector('.beauty-header');
 var $savedItemsStorage = document.querySelector('#saved-items');
 
-/* addEventListener and function for saved button */
 var $savedHomePageButton = document.querySelector('#save-heart-button');
 $savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
@@ -205,7 +181,6 @@ function savedHomePage(event) {
   $savedItemsStorage.className = 'row no-padding';
   $productDetails.className = 'margin-top hidden';
 
-  /* this removes all the duplicate children before appending them again */
   removeAllChildNodes($savedItemsStorage);
 
   for (var i = 0; i < data.save.length; i++) {
@@ -217,14 +192,12 @@ function savedHomePage(event) {
   }
 }
 
-/* function that removes all child nodes under parent */
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
 
-/* Dom Tree for saved items page */
 function renderSavedItems(listing) {
 
   var savedContainer = document.createElement('ul');
@@ -266,8 +239,6 @@ function renderSavedItems(listing) {
   return savedListing;
 }
 
-/* 'click' event functions cannot be called when we refresh. Create another function
-to handle the refresh with values we have in our local storage */
 function productDetailRefresh() {
 
   var getListingItem = data.id;
@@ -291,7 +262,6 @@ function savedPageRefresh() {
   }
 }
 
-/* Condition for refresh */
 if (data.view === 'product-lists') {
   listingHomePage();
 } else if (data.view === 'product-details') {
@@ -300,7 +270,6 @@ if (data.view === 'product-lists') {
   savedPageRefresh();
 }
 
-/* function that renders details on saved page */
 $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
 function savedItemStorageFunction(event) {
 
@@ -316,8 +285,6 @@ function savedItemStorageFunction(event) {
       $productDescriptionDetails.textContent = xhr.response[i].description;
       $productListingId.setAttribute('data-entry-id', getListingId);
 
-      /* Create an object to store the values of the details into data.id; push the
-      values from data.id into our data.save in save function */
       var detailsObject = {
         image: xhr.response[i].image_link,
         name: xhr.response[i].name,
@@ -330,9 +297,9 @@ function savedItemStorageFunction(event) {
       $deleteButton.className = 'delete-button';
     }
   }
+  data.view = 'product-details';
 }
 
-/* event listener for delete in saved page */
 var $deleteButton = document.querySelector('.delete-button');
 $deleteButton.addEventListener('click', deleteButtonFunction);
 
