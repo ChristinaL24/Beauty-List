@@ -3,7 +3,7 @@ var $productDetails = document.querySelector('#product-details');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=5');
+xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=20');
 xhr.responseType = 'json';
 
 $loadingDiv.className = 'loading';
