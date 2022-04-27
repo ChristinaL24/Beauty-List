@@ -72,9 +72,9 @@ h3 {
   border-style: none;
 }
 
-.save-submit-button:hover,
-.delete-button:hover,
-li:hover {
+li,
+.save-submit-button,
+.delete-button {
   cursor: pointer;
 }
 
