@@ -48,7 +48,8 @@ i {
 }
 
 .product-name-span,
-.product-price-span {
+.product-price-span,
+p {
   font-weight: normal;
   font-family: Montserrat, sans-serif, serif;
 }

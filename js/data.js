@@ -2,8 +2,7 @@
 var data = {
   view: '',
   save: [],
-  id: null,
-  results: []
+  id: null
 };
 
 var previousListing = localStorage.getItem('beauty-list');
