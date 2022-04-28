@@ -3,7 +3,7 @@ var $productDetails = document.querySelector('#product-details');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json');
+xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=20');
 xhr.responseType = 'json';
 
 $loadingDiv.className = 'loading';
@@ -180,6 +180,7 @@ var $savedItemsStorage = document.querySelector('#saved-items');
 var $savedHomePageButton = document.querySelector('#save-heart-button');
 $savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
+  noListings();
 
   $savedHeader.className = 'saved-header';
   $beautyHeader.className = 'beauty-header hidden';
@@ -321,4 +322,13 @@ function deleteButtonFunction(event) {
     }
   }
   savedHomePage();
+}
+
+var $noListings = document.querySelector('.no-listings');
+function noListings() {
+  if (data.save.length === 0) {
+    $noListings.className = 'no-listings';
+  } else {
+    $noListings.className = 'no-listings hidden';
+  }
 }

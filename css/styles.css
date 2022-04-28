@@ -48,7 +48,8 @@ i {
 }
 
 .product-name-span,
-.product-price-span {
+.product-price-span,
+p {
   font-weight: normal;
   font-family: Montserrat, sans-serif, serif;
 }
@@ -72,9 +73,9 @@ h3 {
   border-style: none;
 }
 
-.save-submit-button:hover,
-.delete-button:hover,
-li:hover {
+li,
+.save-submit-button,
+.delete-button {
   cursor: pointer;
 }
 
