@@ -34,7 +34,7 @@ Try the application live at [https://christinal24.github.io/beauty-List/](https:
 
 1. Clone the repository.
     ```shell
-    git clone git@github.com:ChristinaL24/beauty-List.git
+    git clone git@github.com:ChristinaL24/beauty-list.git
     cd beauty-list
     ```
 2. Install all dependencies with NPM.
