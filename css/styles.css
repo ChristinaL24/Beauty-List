@@ -4,6 +4,7 @@
 
 body {
   background-color: #e5e5e5;
+  font-family: Montserrat, sans-serif, serif;
 }
 
 header {
@@ -31,7 +32,6 @@ ul {
 }
 
 h5 {
-  font-family: Montserrat, sans-serif, serif;
   font-size: 0.7rem;
 }
 
@@ -43,24 +43,17 @@ i {
   font-size: 1.3rem;
 }
 
-.description {
-  line-height: 1.5rem;
-}
-
 .product-name-span,
 .product-price-span,
 p {
   font-weight: normal;
-  font-family: Montserrat, sans-serif, serif;
 }
 
 .product-description-details {
   line-height: 1.5rem;
-  font-family: Montserrat, sans-serif, serif;
 }
 
 h3 {
-  font-family: Montserrat, sans-serif, serif;
   font-weight: 600;
 }
 
@@ -68,7 +61,6 @@ h3 {
 .delete-button {
   color: #9aaef3;
   background-color: white;
-  font-family: Montserrat, sans-serif, serif;
   border-radius: 1rem;
   border-style: none;
 }
