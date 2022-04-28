@@ -2,7 +2,7 @@
 
 A dynamic HTML, CSS, and JavaScript web application for beauty enthusiasts who want to browse beauty products. 
 
-From stealing my mother's beauty products as a child to now creating a front-end beauty application, makeup has always been a creative and integral tool that has allowed me to creatively express myself. I created this product so that beauty enthusiasts (just like myself) could browse through popular beauty products. 
+From stealing my mother's beauty products as a child to now creating a front-end beauty application, makeup has always been a creative and integral tool that has allowed me to creatively express myself. I created this project so that beauty enthusiasts (just like myself) could browse through popular beauty products. 
 
 # Technologies Used
 - HTML5
