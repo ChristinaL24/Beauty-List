@@ -1,4 +1,4 @@
-# beauty-list 💄
+# Beauty-List 💄
 
 A dynamic HTML, CSS, and JavaScript web application for beauty enthusiasts who want to browse beauty products. 
 
@@ -26,8 +26,6 @@ Try the application live at [https://christinal24.github.io/beauty-List/](https:
 # Preview
 ![Kapture 2022-04-28 at 12 59 20](https://user-images.githubusercontent.com/97194651/165836720-2a05e7de-2000-404c-8979-87aea17a135a.gif)
 ![Kapture 2022-04-28 at 13 11 35](https://user-images.githubusercontent.com/97194651/165837556-ef56ff73-2742-40c8-a0f0-48fe0e4f321b.gif)
-
-
 
 
 # Getting Started
