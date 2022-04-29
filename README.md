@@ -1,4 +1,4 @@
-# beauty-list
+# beauty-list 💄
 
 A dynamic HTML, CSS, and JavaScript web application for beauty enthusiasts who want to browse beauty products. 
 
