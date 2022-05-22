@@ -43,6 +43,24 @@ i {
   font-size: 1.3rem;
 }
 
+li,
+.save-submit-button,
+.delete-button {
+  cursor: pointer;
+}
+
+.delete-button {
+  background: #9aaef3;
+  border: solid;
+  border-radius: 4px;
+  border-width: 2px;
+  color: rgb(255, 255, 255);
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+}
+
 .product-name-span,
 .product-price-span,
 p {
@@ -57,22 +75,15 @@ h3 {
   font-weight: 600;
 }
 
-.save-submit-button,
-.delete-button {
+.save-submit-button {
   color: #9aaef3;
   background-color: white;
   border-radius: 1rem;
   border-style: none;
 }
 
-li,
-.save-submit-button,
-.delete-button {
-  cursor: pointer;
-}
-
 li:hover {
-  transform: scale(1.1);
+  color: #9aaef3;
 }
 
 .loading div {
