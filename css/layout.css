@@ -9,6 +9,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-width: 525px;
+  background-image: url("../images/bg.png");
+  background-size: cover;
 }
 
 img {
@@ -76,14 +78,18 @@ footer {
   display: none;
 }
 
+.view {
+  display: contents;
+}
+
 .margin-top {
   margin-top: 1rem;
 }
 
 .save-submit-button,
 .delete-button {
-  width: 4rem;
-  padding: 0.3rem;
+  width: 6rem;
+  padding: 0.6rem 1rem;
 }
 
 .justify-right {

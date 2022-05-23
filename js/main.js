@@ -3,15 +3,12 @@ var $productDetails = document.querySelector('#product-details');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=10');
+xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=3');
 xhr.responseType = 'json';
 
 $loadingDiv.className = 'loading';
-
 xhr.addEventListener('load', function () {
-
   event.preventDefault();
-
   for (var i = 0; i < xhr.response.length; i++) {
     var newListing = {
       name: xhr.response[i].name,
@@ -20,7 +17,6 @@ xhr.addEventListener('load', function () {
       image: xhr.response[i].image_link,
       description: xhr.response[i].description
     };
-
     if (xhr.response[i].price !== '0.0' && xhr.response[i].price !== null) {
       var makeUpProducts = renderListing(newListing);
       $productListing.appendChild(makeUpProducts);
@@ -34,7 +30,6 @@ xhr.addEventListener('load', function () {
 xhr.send();
 
 function renderListing(listing) {
-
   event.preventDefault();
 
   var $imgBroken = document.querySelectorAll('img');
@@ -78,7 +73,7 @@ function renderListing(listing) {
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
 
   data.view = 'product-lists';
-  noListings();
+
   return makeUpListing;
 }
 
@@ -93,11 +88,13 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
+var $beautyHeader = document.querySelector('.beauty-header');
+var $savedHeader = document.querySelector('.saved-header');
+
 function detailListingPage() {
-  $productDetails.className = 'margin-top';
-  $productListing.className = 'row no-padding hidden';
-  $savedItemsStorage.className = 'row no-padding hidden';
-  data.view = 'product-details';
+  $beautyHeader.className = 'beauty-header test view';
+  $savedHeader.className = 'saved-header hidden';
+  viewSwap('product-details');
 }
 
 var $homeButton = document.querySelector('#home-button');
@@ -123,6 +120,7 @@ function productListingClicked(event) {
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
+
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
@@ -141,6 +139,7 @@ function productListingClicked(event) {
       data.id = detailsObject;
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
+      $deleteButton.className = 'delete-button hidden';
       $saveSubmitButton.className = 'save-submit-button';
     }
   }
@@ -159,6 +158,7 @@ function containsObject(object, array) {
 var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
+
   event.preventDefault();
 
   if (event.target.matches('.save-submit-button')) {
@@ -170,8 +170,6 @@ function saveSubmitButtonFunction(event) {
   }
 }
 
-var $savedHeader = document.querySelector('.saved-header');
-var $beautyHeader = document.querySelector('.beauty-header');
 var $savedItemsStorage = document.querySelector('#saved-items');
 
 var $savedHomePageButton = document.querySelector('#save-heart-button');
@@ -201,14 +199,17 @@ function removeAllChildNodes(parent) {
   }
 }
 
-var $noListings = document.querySelector('.no-listings');
-function noListings() {
-  if (data.view === 'saved-items' && data.save.length === 0) {
-    $noListings.className = 'no-listings';
-  } else {
-    $noListings.className = 'no-listings hidden';
+const $view = document.querySelectorAll('.view');
+const viewSwap = view => {
+  data.view = view;
+  for (let i = 0; i < $view.length; i++) {
+    if ($view[i].getAttribute('data-view') === view) {
+      $view[i].classList.remove('hidden');
+    } else {
+      $view[i].classList.add('hidden');
+    }
   }
-}
+};
 
 function renderSavedItems(listing) {
 
@@ -218,8 +219,6 @@ function renderSavedItems(listing) {
   savedListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
   savedContainer.appendChild(savedListing);
 
-  savedListing.setAttribute('data-entry-id', listing.id);
-
   var firstDiv = document.createElement('div');
   firstDiv.setAttribute('class', 'wrapper row');
   savedListing.appendChild(firstDiv);
@@ -228,17 +227,10 @@ function renderSavedItems(listing) {
   secondDiv.setAttribute('class', 'column-one-third');
   firstDiv.appendChild(secondDiv);
 
-  if (listing.image === undefined) {
-    var productImgNull = document.createElement('img');
-    productImgNull.setAttribute('src', './images/image.png');
-    productImgNull.setAttribute('class', 'product-img-listing');
-    secondDiv.appendChild(productImgNull);
-  } else {
-    var productImg = document.createElement('img');
-    productImg.setAttribute('src', listing.image);
-    productImg.setAttribute('class', 'product-img-listing');
-    secondDiv.appendChild(productImg);
-  }
+  var productImg = document.createElement('img');
+  productImg.setAttribute('src', listing.image);
+  productImg.setAttribute('class', 'product-img-listing');
+  secondDiv.appendChild(productImg);
 
   var thirdDiv = document.createElement('div');
   thirdDiv.setAttribute('class', 'column-two-third product-info');
@@ -253,10 +245,7 @@ function renderSavedItems(listing) {
   productPrice.setAttribute('class', 'display-gap');
   thirdDiv.appendChild(productPrice);
 
-  var deleteButton = document.createElement('button');
-  deleteButton.setAttribute('class', 'delete-button');
-  deleteButton.textContent = 'Delete';
-  productPrice.appendChild(deleteButton);
+  savedListing.setAttribute('data-entry-id', listing.id);
 
   data.view = 'saved-items';
 
@@ -277,6 +266,7 @@ function productDetailRefresh() {
 
 function savedPageRefresh() {
   for (var i = 0; i < data.save.length; i++) {
+
     var dataSavedItems = data.save[i];
 
     var savedProducts = renderSavedItems(dataSavedItems);
@@ -293,6 +283,36 @@ if (data.view === 'product-lists') {
   savedPageRefresh();
 }
 
+$savedItemsStorage.addEventListener('click', savedItemStorageFunction);
+function savedItemStorageFunction(event) {
+
+  var getListingItem = event.target.closest('li');
+  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  detailListingPage();
+
+  for (var i = 0; i < xhr.response.length; i++) {
+    if (xhr.response[i].id === getListingId) {
+      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+      $productNameDetails.textContent = xhr.response[i].name;
+      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
+      $productDescriptionDetails.textContent = xhr.response[i].description;
+      $productListingId.setAttribute('data-entry-id', getListingId);
+
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
+      };
+      data.id = detailsObject;
+      $saveSubmitButton.className = 'save-submit-button hidden';
+      $deleteButton.className = 'delete-button';
+    }
+  }
+  data.view = 'product-details';
+}
+
 var $deleteButton = document.querySelector('.delete-button');
 $deleteButton.addEventListener('click', deleteButtonFunction);
 
@@ -304,5 +324,14 @@ function deleteButtonFunction(event) {
       }
     }
   }
-  savedHomePage();
+  viewSwap('saved-items');
 }
+
+// var $noListings = document.querySelector('.no-listings');
+// function noListings() {
+//   if (data.save.length === 0) {
+//     $noListings.className = 'no-listings';
+//   } else {
+//     $noListings.className = 'no-listings hidden';
+//   }
+// }

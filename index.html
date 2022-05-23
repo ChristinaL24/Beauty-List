@@ -32,8 +32,8 @@
       <div class="container">
         <div class="row">
           <div class="column-half" id="nav-bar">
-            <h2 class="beauty-header">Beauty List</h2>
-            <h2 class="saved-header hidden">Saved Items</h2>
+            <h2 data-view="product-lists" class="beauty-header view">Beauty List</h2>
+            <h2 data-view="saved-items" class="saved-header hidden">Saved Items</h2>
           </div>
           <div class="column-half inline-align gap padding-left">
             <a href="#" class="home-button">
@@ -62,16 +62,16 @@
         <div></div>
       </div>
       <div class="container">
-        <div data-view="product-lists" class="row no-padding" id="product-listing">
+        <div data-view="product-lists" class="row no-padding view" id="product-listing">
         </div>
       </div>
       <div class="container">
-        <div data-view="saved-items" class="row no-padding hidden" id="saved-items">
-          <p class="no-listings">There are no listings</p>
+        <div data-view="saved-items" class="row no-padding view hidden" id="saved-items">
+          <!-- <p class="no-listings">There are no listings</p> -->
         </div>
       </div>
       <div class="container">
-        <div data-view="product-details" class="margin-top hidden" id="product-details">
+        <div data-view="product-details" class="margin-top view hidden" id="product-details">
           <div class="row">
             <div class="column-mobile-full column-desktop-half padding-right">
               <img src=" "
@@ -86,20 +86,13 @@
               <p class="product-description-details"></p>
               <div class="justify-right margin-bottom">
                 <button type="submit" class="save-submit-button">Save</button>
+                <button type="submit" class="delete-button">Delete</button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="column-full">
-            <p></p>
-          </div>
-        </div>
-    </footer>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
   </body>
