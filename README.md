@@ -23,9 +23,10 @@ Try the application live at [https://christinal24.github.io/beauty-list/](https:
 # Stretch Features
 - Users will be able to search for a brand or product
 
-# Preview
-![Kapture 2022-04-28 at 12 59 20](https://user-images.githubusercontent.com/97194651/165836720-2a05e7de-2000-404c-8979-87aea17a135a.gif)
-![Kapture 2022-04-28 at 13 11 35](https://user-images.githubusercontent.com/97194651/165837556-ef56ff73-2742-40c8-a0f0-48fe0e4f321b.gif)
+# Preview!
+[Uploading Kapture 2022-05-23 at 20.20.15.gif…]()
+![Kapture 2022-05-23 at 20 22 49](https://user-images.githubusercontent.com/97194651/169942491-73e06f2b-5336-432f-abde-59946a270639.gif)
+
 
 
 # Getting Started
