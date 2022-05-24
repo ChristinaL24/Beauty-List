@@ -9,6 +9,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-width: 525px;
+  background-image: url("../images/bg.png");
+  background-attachment: fixed;
 }
 
 img {
@@ -49,11 +51,6 @@ img {
   padding-left: 0;
 }
 
-footer {
-  margin-top: auto;
-  padding-top: 2rem;
-}
-
 .product-info {
   padding-left: 0.5rem;
 }
@@ -82,8 +79,8 @@ footer {
 
 .save-submit-button,
 .delete-button {
-  width: 4rem;
-  padding: 0.3rem;
+  width: 6rem;
+  padding: 0.6rem 1rem;
 }
 
 .justify-right {
@@ -104,8 +101,8 @@ footer {
 .loading {
   color: official;
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   left: 15rem;
   top: 15rem;
 }

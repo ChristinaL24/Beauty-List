@@ -3,28 +3,25 @@
 }
 
 body {
-  background-color: #e5e5e5;
   font-family: Montserrat, sans-serif, serif;
 }
 
 header {
-  background-color: #9aaef3;
+  background-color: #ffafaf;
   color: white;
   font-family: "Berkshire Swash", cursive, sans-serif;
 }
 
-footer {
-  background-color: #9aaef3;
-}
-
 .wrapper {
-  background-color: white;
-  box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.253);
+  background-color: rgb(255, 232, 232);
+  box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.253);
   border-radius: 2px;
+  border: 1px solid #ffd0d0;
 }
 
-.product-img {
+img {
   border-radius: 2px;
+  border: 2px solid #ffd0d0;
 }
 
 ul {
@@ -43,6 +40,25 @@ i {
   font-size: 1.3rem;
 }
 
+li,
+.save-submit-button,
+.delete-button {
+  cursor: pointer;
+}
+
+.save-submit-button,
+.delete-button {
+  color: #fff;
+  background-color: #ffafaf;
+  border-radius: 1rem;
+  border-style: none;
+}
+
+.delete-button:hover,
+.save-submit-button:hover {
+  transform: scale(1.1);
+}
+
 .product-name-span,
 .product-price-span,
 p {
@@ -57,22 +73,8 @@ h3 {
   font-weight: 600;
 }
 
-.save-submit-button,
-.delete-button {
-  color: #9aaef3;
-  background-color: white;
-  border-radius: 1rem;
-  border-style: none;
-}
-
-li,
-.save-submit-button,
-.delete-button {
-  cursor: pointer;
-}
-
 li:hover {
-  transform: scale(1.1);
+  color: #f39f9f;
 }
 
 .loading div {
@@ -89,7 +91,7 @@ li:hover {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #fff;
+  background: rgb(0, 0, 0);
 }
 
 .loading div:nth-child(1) {
