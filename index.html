@@ -1,99 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" name="title" content="Beauty List">
-    <meta property="og:description" name="description"
-          content="A web application for beauty enthusiast who want to browse makeup products">
-    <meta property="og:image" name="image" content="https://github.com/ChristinaL24/beauty-list/blob/master/images/makeup.jpg">
-    <meta property="og:url"
-          content="https://christinal24.github.io/beauty-list/"/>
-    <title>Beauty List</title>
-    <link rel="icon" href="images/lipstick.ico">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <div class="container">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" name="title" content="Beauty List">
+  <meta property="og:description" name="description"
+    content="A web application for beauty enthusiast who want to browse makeup products">
+  <meta property="og:image" name="image"
+    content="https://github.com/ChristinaL24/beauty-list/blob/master/images/makeup.jpg">
+  <meta property="og:url" content="https://christinal24.github.io/beauty-list/" />
+  <title>Beauty List</title>
+  <link rel="icon" href="images/lipstick.ico">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="column-half" id="nav-bar">
+          <h2 data-view="product-listing" class="beauty-header">Beauty List</h2>
+          <h2 data-view="saved-items" class="saved-header hidden">Saved Items</h2>
+        </div>
+        <div class="column-half inline-align gap padding-left">
+          <a href="#" class="home-button">
+            <i class="fa-solid fa-house-chimney white" id="home-button"></i>
+          </a>
+          <a href="#" class="heart-save-button">
+            <i class="fa-solid fa-heart white" id="save-heart-button"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div>
+    <div class="loading hidden">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="container">
+      <div data-view="product-lists" class="row no-padding" id="product-listing">
+      </div>
+    </div>
+    <div class="container">
+      <div data-view="saved-items" class="row no-padding hidden" id="saved-items">
+      </div>
+    </div>
+    <div class="container">
+      <div data-view="product-details" class="margin-top hidden" id="product-details">
         <div class="row">
-          <div class="column-half" id="nav-bar">
-            <h2 data-view="product-lists" class="beauty-header view">Beauty List</h2>
-            <h2 data-view="saved-items" class="saved-header hidden">Saved Items</h2>
+          <div class="column-mobile-full column-desktop-half padding-right">
+            <img src=" " class="product-img-details">
           </div>
-          <div class="column-half inline-align gap padding-left">
-            <a href="#" class="home-button">
-              <i class="fa-solid fa-house-chimney white" id="home-button"></i>
-            </a>
-            <a href="#" class="heart-save-button">
-              <i class="fa-solid fa-heart white" id="save-heart-button"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div>
-      <div class="loading hidden">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="container">
-        <div data-view="product-lists" class="row no-padding view" id="product-listing">
-        </div>
-      </div>
-      <div class="container">
-        <div data-view="saved-items" class="row no-padding view hidden" id="saved-items">
-          <!-- <p class="no-listings">There are no listings</p> -->
-        </div>
-      </div>
-      <div class="container">
-        <div data-view="product-details" class="margin-top view hidden" id="product-details">
-          <div class="row">
-            <div class="column-mobile-full column-desktop-half padding-right">
-              <img src=" "
-                class="product-img-details">
-            </div>
-            <div class="column-desktop-half">
-              <h3 class="itemId">Product Name: <span class="product-name-span"></span>
-              </h3>
-              <h3>Price: <span class="product-price-span"></span>
-              </h3>
-              <h3>Description:</h3>
-              <p class="product-description-details"></p>
-              <div class="justify-right margin-bottom">
-                <button type="submit" class="save-submit-button">Save</button>
-                <button type="submit" class="delete-button ">Delete</button>
-              </div>
+          <div class="column-desktop-half">
+            <h3 class="itemId">Product Name: <span class="product-name-span"></span>
+            </h3>
+            <h3>Price: <span class="product-price-span"></span>
+            </h3>
+            <h3>Description:</h3>
+            <p class="product-description-details"></p>
+            <div class="justify-right margin-bottom">
+              <button type="submit" class="save-submit-button">Save</button>
+              <button type="submit" class="delete-button hidden">Delete</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
