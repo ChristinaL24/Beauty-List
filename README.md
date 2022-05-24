@@ -11,7 +11,7 @@ From stealing my mother's beauty products as a child to now creating a front-end
 
 # Live Demo
 
-Try the application live at [https://christinal24.github.io/beauty-List/](https://christinal24.github.io/beauty-List/)
+Try the application live at [https://christinal24.github.io/beauty-list/](https://christinal24.github.io/beauty-list/)
 
 # Features
 - Users can view makeup products
