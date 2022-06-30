@@ -44,7 +44,7 @@ function renderListing(listing) {
   var makeUpContainer = document.createElement('ul');
 
   var makeUpListing = document.createElement('li');
-  makeUpListing.setAttribute('class', 'col');
+  makeUpListing.setAttribute('class', 'col ms-2 me-2');
   makeUpContainer.appendChild(makeUpListing);
 
   var firstDiv = document.createElement('div');

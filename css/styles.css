@@ -13,20 +13,12 @@ header {
   font-family: monospace, cursive, sans-serif;
 }
 
-.wrapper {
-  background-color: rgb(255, 232, 232);
-  box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.253);
-  border-radius: 2px;
-  border: 1px solid #785353;
-}
-
 /* img {
   border-radius: 2px;
   border: 2px solid #ffd0d0;
 } */
 
 h2 {
-  color: black;
   font-family: Raleway, monospace, sans-serif;
 }
 
