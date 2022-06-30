@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -32,19 +31,16 @@
     <div class="container">
       <div class="row">
         <div class="column-half" id="nav-bar">
-          <h2 data-view="product-listing" class="beauty-header">Beauty List</h2>
-          <h2 data-view="saved-items" class="saved-header hidden">Saved Items</h2>
+          <h1 data-view="product-listing" class="beauty-header">Beauty List</h1>
+          <h1 data-view="saved-items" class="saved-header hidden">Saved Items</h1>
         </div>
         <div class="column-half inline-align gap padding-left">
-          <a href="#" class="home-button">
-            <i class="fa-solid fa-house-chimney white" id="home-button"></i>
-          </a>
-          <a href="#" class="heart-save-button">
-            <i class="fa-solid fa-heart white" id="save-heart-button"></i>
-          </a>
+          <a href="#" class="home-button" id="home-button">Home</a>
+          <a href="#" class="heart-save-button" id="save-heart-button">Saved</a>
         </div>
       </div>
     </div>
+    <hr>
   </header>
   <div>
     <div class="loading hidden">
@@ -61,6 +57,10 @@
       <div></div>
       <div></div>
     </div>
+    <div class="hero">
+      <img src="./images/hero.png">
+    </div>
+    <hr>
     <div class="container">
       <div data-view="product-lists" class="row no-padding" id="product-listing">
       </div>

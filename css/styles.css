@@ -4,24 +4,29 @@
 
 body {
   font-family: Montserrat, sans-serif, serif;
+  min-width: 650px;
+  background-color: rgb(255, 249, 249);
 }
 
 header {
-  background-color: #ffafaf;
-  color: white;
-  font-family: "Berkshire Swash", cursive, sans-serif;
+  background-color: rgb(255, 249, 249);
+  font-family: monospace, cursive, sans-serif;
 }
 
 .wrapper {
   background-color: rgb(255, 232, 232);
   box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.253);
   border-radius: 2px;
-  border: 1px solid #ffd0d0;
+  border: 1px solid #785353;
 }
 
-img {
+/* img {
   border-radius: 2px;
   border: 2px solid #ffd0d0;
+} */
+
+h1 {
+  color: black;
 }
 
 ul {
@@ -32,8 +37,14 @@ h5 {
   font-size: 0.7rem;
 }
 
-.white {
-  color: white;
+a {
+  color: black;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffafaf;
 }
 
 i {
@@ -48,7 +59,7 @@ li,
 
 .save-submit-button,
 .delete-button {
-  color: #fff;
+  color: rgb(107, 64, 64);
   background-color: #ffafaf;
   border-radius: 1rem;
   border-style: none;
