@@ -10,12 +10,17 @@
     content="https://github.com/ChristinaL24/beauty-list/blob/master/images/makeup.jpg">
   <meta property="og:url" content="https://christinal24.github.io/beauty-list/" />
   <title>Beauty List</title>
-  <link rel="icon" href="images/lipstick.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -29,12 +34,13 @@
 <body>
   <header>
     <div class="container">
-      <div class="row">
-        <div class="column-half" id="nav-bar">
-          <h1 data-view="product-listing" class="beauty-header">Beauty List</h1>
-          <h1 data-view="saved-items" class="saved-header hidden">Saved Items</h1>
+      <div class="d-flex flex-nowrap pt-4 justify-content-between">
+        <div class="" id="nav-bar">
+          <h2 data-view="product-listing" class="beauty-header">Beauty List</h2>
+          <h2 data-view="saved-items" class="saved-header hidden">Saved Items</h2>
         </div>
-        <div class="column-half inline-align gap padding-left">
+
+        <div class="d-flex gap-5">
           <a href="#" class="home-button" id="home-button">Home</a>
           <a href="#" class="heart-save-button" id="save-heart-button">Saved</a>
         </div>
@@ -57,18 +63,23 @@
       <div></div>
       <div></div>
     </div>
+
     <div class="hero">
-      <img src="./images/hero.png">
+      <img src="./images/hero.png" alt="website's hero photo">
     </div>
     <hr>
+
     <div class="container">
-      <div data-view="product-lists" class="row no-padding" id="product-listing">
+      <div data-view="product-lists" class="row row-cols-1 row-cols-md-3 g-4" id="product-listing">
+
       </div>
     </div>
+
     <div class="container">
       <div data-view="saved-items" class="row no-padding hidden" id="saved-items">
       </div>
     </div>
+
     <div class="container">
       <div data-view="product-details" class="margin-top hidden" id="product-details">
         <div class="row">
@@ -93,5 +104,8 @@
   </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+          crossorigin="anonymous"></script>
 </body>
 </html>

@@ -25,8 +25,9 @@ header {
   border: 2px solid #ffd0d0;
 } */
 
-h1 {
+h2 {
   color: black;
+  font-family: Raleway, monospace, sans-serif;
 }
 
 ul {
@@ -39,7 +40,8 @@ h5 {
 
 a {
   color: black;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-family: Raleway, monospace, sans-serif;
   text-decoration: none;
 }
 

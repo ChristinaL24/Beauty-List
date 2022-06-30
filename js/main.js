@@ -44,32 +44,34 @@ function renderListing(listing) {
   var makeUpContainer = document.createElement('ul');
 
   var makeUpListing = document.createElement('li');
-  makeUpListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
+  makeUpListing.setAttribute('class', 'col');
   makeUpContainer.appendChild(makeUpListing);
 
   var firstDiv = document.createElement('div');
-  firstDiv.setAttribute('class', 'wrapper row');
+  firstDiv.setAttribute('class', 'card h-100');
   makeUpListing.appendChild(firstDiv);
 
   var secondDiv = document.createElement('div');
-  secondDiv.setAttribute('class', 'column-one-third');
+  secondDiv.setAttribute('class', 'card-body');
   firstDiv.appendChild(secondDiv);
 
   var productImg = document.createElement('img');
   productImg.setAttribute('src', listing.image);
-  productImg.setAttribute('class', 'product-img-listing');
+  productImg.setAttribute('class', 'card-img-top');
   secondDiv.appendChild(productImg);
 
   var thirdDiv = document.createElement('div');
-  thirdDiv.setAttribute('class', 'column-two-third product-info');
+  thirdDiv.setAttribute('class', 'card-body');
   firstDiv.appendChild(thirdDiv);
 
   var productName = document.createElement('h5');
   productName.textContent = capitalizeWords(listing.name);
+  productName.setAttribute('class', 'card-title');
   thirdDiv.appendChild(productName);
 
   var productPrice = document.createElement('h5');
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
+  productPrice.setAttribute('class', 'card-text');
   thirdDiv.appendChild(productPrice);
 
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
