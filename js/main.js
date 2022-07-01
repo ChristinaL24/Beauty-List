@@ -1,11 +1,11 @@
 var $productListing = document.querySelector('#product-listing');
-var $productDetails = document.querySelector('#product-details');
-var $loadingDiv = document.querySelector('.loading');
+// var $productDetails = document.querySelector('#product-details');
+// var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=3');
 xhr.responseType = 'json';
-$loadingDiv.className = 'loading';
+// $loadingDiv.className = 'loading';
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
@@ -26,7 +26,7 @@ xhr.addEventListener('load', function () {
       console.error('Sorry! There is an error with this request');
     }
   }
-  $loadingDiv.className = 'loading hidden';
+  // $loadingDiv.className = 'loading hidden';
 });
 xhr.send();
 
@@ -71,8 +71,6 @@ function renderListing(listing) {
 
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
 
-  data.view = 'product-lists';
-
   return makeUpListing;
 }
 
@@ -87,94 +85,90 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-function detailListingPage() {
-  $productDetails.className = 'margin-top';
-  $productListing.className = 'row no-padding hidden';
-  $savedItemsStorage.className = 'row no-padding hidden';
-  data.view = 'product-details';
-}
+// function detailListingPage() {
+//   $productDetails.className = 'margin-top';
+//   $productListing.className = 'row no-padding hidden';
+//   $savedItemsStorage.className = 'row no-padding hidden';
+//   data.view = 'product-details';
+// }
 
-var $productImageDetails = document.querySelector('.product-img-details');
-var $productNameDetails = document.querySelector('.product-name-span');
-var $productPriceDetails = document.querySelector('.product-price-span');
-var $productDescriptionDetails = document.querySelector('.product-description-details');
-var $productListingId = document.querySelector('.itemId');
+// var $productImageDetails = document.querySelector('.product-img-details');
+// var $productNameDetails = document.querySelector('.product-name-span');
+// var $productPriceDetails = document.querySelector('.product-price-span');
+// var $productDescriptionDetails = document.querySelector('.product-description-details');
+// var $productListingId = document.querySelector('.itemId');
 
-$productListing.addEventListener('click', productListingClicked);
-function productListingClicked(event) {
+// $productListing.addEventListener('click', productListingClicked);
+// function productListingClicked(event) {
 
-  var getListingItem = event.target.closest('li');
-  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+//   var getListingItem = event.target.closest('li');
+//   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
 
-  detailListingPage();
+//   // detailListingPage();
 
-  for (var i = 0; i < xhr.response.length; i++) {
-    if (xhr.response[i].id === getListingId) {
-      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
-      $productNameDetails.textContent = xhr.response[i].name;
-      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
-      $productDescriptionDetails.textContent = xhr.response[i].description;
-      $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
+//   for (var i = 0; i < xhr.response.length; i++) {
+//     if (xhr.response[i].id === getListingId) {
+//       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+//       $productNameDetails.textContent = xhr.response[i].name;
+//       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
+//       $productDescriptionDetails.textContent = xhr.response[i].description;
+//       $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
-      var detailsObject = {
-        image: xhr.response[i].image_link,
-        name: xhr.response[i].name,
-        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
-        id: xhr.response[i].id,
-        description: xhr.response[i].description
-      };
-      data.id = detailsObject;
-      var savedProducts = renderSavedItems(detailsObject);
-      $savedItemsStorage.appendChild(savedProducts);
-      $saveSubmitButton.className = 'save-submit-button';
-      $deleteButton.className = 'delete-button hidden';
-    }
-  }
-  data.view = 'product-details';
-}
+//       var detailsObject = {
+//         image: xhr.response[i].image_link,
+//         name: xhr.response[i].name,
+//         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+//         id: xhr.response[i].id,
+//         description: xhr.response[i].description
+//       };
+//       data.id = detailsObject;
+//       var savedProducts = renderSavedItems(detailsObject);
+//       $savedItemsStorage.appendChild(savedProducts);
+//       $saveSubmitButton.className = 'save-submit-button';
+//       $deleteButton.className = 'delete-button hidden';
+//     }
+//   }
+//   data.view = 'product-details';
+// }
 
-function containsObject(object, array) {
-  for (var i = 0; i < array.length; i++) {
-    if (object.id === array[i].id) {
-      return true;
-    }
-  }
-  return false;
-}
+// function containsObject(object, array) {
+//   for (var i = 0; i < array.length; i++) {
+//     if (object.id === array[i].id) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 
-var $saveSubmitButton = document.querySelector('.save-submit-button');
-$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
-function saveSubmitButtonFunction(event) {
+// var $saveSubmitButton = document.querySelector('.save-submit-button');
+// $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
+// function saveSubmitButtonFunction(event) {
 
-  event.preventDefault();
+//   event.preventDefault();
 
-  if (event.target.matches('.save-submit-button')) {
-    savedHomePage();
-    if (containsObject(data.id, data.save) !== true) {
-      data.save.push(data.id);
-      savedHomePage();
-    }
-  }
-}
+//   if (event.target.matches('.save-submit-button')) {
+//     savedHomePage();
+//     if (containsObject(data.id, data.save) !== true) {
+//       data.save.push(data.id);
+//       savedHomePage();
+//     }
+//   }
+// }
 
 var $savedItemsStorage = document.querySelector('#saved-items');
 
-var $savedHomePageButton = document.querySelector('#save-heart-button');
+var $savedHomePageButton = document.querySelector('#save-button');
 $savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
 
-  $productListing.className = 'row no-padding hidden';
-  $savedItemsStorage.className = 'row no-padding';
-  $productDetails.className = 'margin-top hidden';
-
+  // $productListing.className = 'row no-padding hidden';
+  // $productDetails.className = 'margin-top hidden';
   removeAllChildNodes($savedItemsStorage);
 
   for (var i = 0; i < data.save.length; i++) {
-
     var dataSavedItems = data.save[i];
     var savedProductsInStorage = renderSavedItems(dataSavedItems);
     $savedItemsStorage.appendChild(savedProductsInStorage);
-    data.view = 'saved-items';
   }
 }
 
@@ -218,50 +212,48 @@ function renderSavedItems(listing) {
 
   savedListing.setAttribute('data-entry-id', listing.id);
 
-  data.view = 'saved-items';
-
   return savedListing;
 }
 
-$savedItemsStorage.addEventListener('click', savedItemStorageFunction);
-function savedItemStorageFunction(event) {
-  var getListingItem = event.target.closest('li');
-  var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
-  detailListingPage();
+// $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
+// function savedItemStorageFunction(event) {
+//   var getListingItem = event.target.closest('li');
+//   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+//   detailListingPage();
 
-  for (var i = 0; i < xhr.response.length; i++) {
-    if (xhr.response[i].id === getListingId) {
-      $productImageDetails.setAttribute('src', xhr.response[i].image_link);
-      $productNameDetails.textContent = xhr.response[i].name;
-      $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
-      $productDescriptionDetails.textContent = xhr.response[i].description;
-      $productListingId.setAttribute('data-entry-id', getListingId);
+//   for (var i = 0; i < xhr.response.length; i++) {
+//     if (xhr.response[i].id === getListingId) {
+//       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
+//       $productNameDetails.textContent = xhr.response[i].name;
+//       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
+//       $productDescriptionDetails.textContent = xhr.response[i].description;
+//       $productListingId.setAttribute('data-entry-id', getListingId);
 
-      var detailsObject = {
-        image: xhr.response[i].image_link,
-        name: xhr.response[i].name,
-        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
-        id: xhr.response[i].id,
-        description: xhr.response[i].description
-      };
-      data.id = detailsObject;
-      $saveSubmitButton.className = 'save-submit-button hidden';
-      $deleteButton.className = 'delete-button';
-    }
-  }
-  data.view = 'product-details';
-}
+//       var detailsObject = {
+//         image: xhr.response[i].image_link,
+//         name: xhr.response[i].name,
+//         price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+//         id: xhr.response[i].id,
+//         description: xhr.response[i].description
+//       };
+//       data.id = detailsObject;
+//       $saveSubmitButton.className = 'save-submit-button hidden';
+//       $deleteButton.className = 'delete-button';
+//     }
+//   }
+//   data.view = 'product-details';
+// }
 
-var $deleteButton = document.querySelector('.delete-button');
-$deleteButton.addEventListener('click', deleteButtonFunction);
+// var $deleteButton = document.querySelector('.delete-button');
+// $deleteButton.addEventListener('click', deleteButtonFunction);
 
-function deleteButtonFunction(event) {
-  if (event.target.matches('.delete-button') && containsObject(data.id, data.save) === true) {
-    for (var i = 0; i < data.save.length; i++) {
-      if (data.id.id === data.save[i].id) {
-        data.save.splice(i, 1);
-      }
-    }
-  }
-  savedHomePage();
-}
+// function deleteButtonFunction(event) {
+//   if (event.target.matches('.delete-button') && containsObject(data.id, data.save) === true) {
+//     for (var i = 0; i < data.save.length; i++) {
+//       if (data.id.id === data.save[i].id) {
+//         data.save.splice(i, 1);
+//       }
+//     }
+//   }
+//   savedHomePage();
+// }

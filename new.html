@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="page-container">
+      <div class="tabbed-views d-flex flex-nowrap pt-4 ms-4 me-4 justify-content-between">
+        <h2>Beauty List</h2>
+        <div class="tab-container d-flex gap-5" id="nav-bar">
+          <a href="#" class="tab active" data-view="product-listings">Home</a>
+          <a href="#" class="tab" data-view="saved-listings">Saved</a>
+        </div>
+      </div>
+      <hr>
+    </header>
+
+    <div class="view-container">
+      <!-- home page -->
+
+      <div class="home-page view" data-view="product-listings">
+        <img src="./images/hero.png" alt="home page hero photo">
+        <hr>
+        <div class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="product-listing">
+        </div>
+      </div>
+
+      <!-- saved page -->
+      <div class="saved-page view hidden" data-view="saved-listings">
+        <img src="./images/saved.png" alt="saved page hero photo">
+        <hr>
+        <div class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="saved-items">
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+    <script src="js/data.js"></script>
+    <script src="js/new.js"></script>
+  </body>
+</html>
