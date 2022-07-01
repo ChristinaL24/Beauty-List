@@ -3,9 +3,9 @@ var $tabContainer = document.querySelector('.tab-container');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
 
-$tabContainer.addEventListener('click', tabContainerFunction);
+$tabContainer.addEventListener('click', viewSwap);
 
-function tabContainerFunction(event) {
+function viewSwap(event) {
   if (event.target && event.target.matches('.tab')) {
     for (var i = 0; i < $tab.length; i++) {
       if ($tab[i] === event.target) {
@@ -27,7 +27,7 @@ function tabContainerFunction(event) {
 
 // API Call Code
 
-var $productListing = document.querySelector('#product-listing');
+var $productListing = document.querySelector('#product-listings');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
@@ -115,14 +115,40 @@ function capitalizeWords(string) {
   }
   return newString.slice(1);
 }
+// Return home
+
+function listingHomePage(event) {
+  $productDetails.classList.add('hidden');
+  $productListing.classList.remove('hidden');
+  $heroImg.classList.remove('hidden');
+}
+
+var $homeButton = document.querySelector('.home-button');
+$homeButton.addEventListener('click', homeButtonClicked);
+function homeButtonClicked(event) {
+  if (event.target.tagName === 'A') {
+    return listingHomePage();
+  }
+}
 
 // Get Details
 
+function detailListingPage() {
+  $productDetails.classList.remove('hidden');
+  $productListing.classList.add('hidden');
+  $heroImg.classList.add('hidden');
+  // $savedItemsStorage.className = 'row no-padding hidden';
+  // viewSwap('product-details');
+}
+
 // var $productDetails = document.querySelector('#product-details');
+var $productDetails = document.querySelector('.details-page');
 var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
+var $heroImg = document.querySelector('.hero');
+
 // var $productListingId = document.querySelector('.itemId');
 
 $productListing.addEventListener('click', productListingClicked);
@@ -130,7 +156,7 @@ function productListingClicked(event) {
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
-
+  detailListingPage();
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
@@ -153,7 +179,7 @@ function productListingClicked(event) {
       //     $deleteButton.className = 'delete-button hidden';
       //   }
       // }
-      data.view = 'product-details';
+      viewSwap('product-details');
     }
   }
 }

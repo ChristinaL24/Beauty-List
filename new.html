@@ -27,8 +27,8 @@
       <div class="tabbed-views d-flex flex-nowrap pt-4 ms-4 me-4 justify-content-between">
         <h2>Beauty List</h2>
         <div class="tab-container d-flex gap-5" id="nav-bar">
-          <a href="#" class="tab active" data-view="product-listings">Home</a>
-          <a href="#" class="tab" data-view="saved-listings">Saved</a>
+          <a href="#" class="home-button tab active" data-view="product-listings">Home</a>
+          <a href="#" class="saved-button tab" data-view="saved-listings">Saved</a>
         </div>
       </div>
       <hr>
@@ -51,9 +51,9 @@
       <!-- home page -->
 
       <div class="home-page view" data-view="product-listings">
-        <img src="./images/hero.png" alt="home page hero photo">
+        <img class="hero" src="./images/hero.png" alt="home page hero photo">
         <hr>
-        <div class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="product-listing">
+        <div class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="product-listings">
         </div>
       </div>
 
@@ -70,8 +70,8 @@
     </div>
 
     <!-- Details page -->
-    <div class="details-page view" data-view="product-details">
-      <div id="product-details" class="card m-5">
+    <div class="details-page view hidden" id="product-details" data-view="product-details">
+      <div class="card m-5">
         <img src=" " class="product-img-details card-img-top pt-5 align-self-center">
         <div class="card-body p-5">
           <h3 class="product-name-span fw-bold card-title">
