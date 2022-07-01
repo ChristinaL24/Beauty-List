@@ -44,7 +44,7 @@
     </div>
     <hr>
   </header>
-  <div>
+  <section>
     <div class="loading hidden">
       <div></div>
       <div></div>
@@ -59,50 +59,34 @@
       <div></div>
       <div></div>
     </div>
-
     <div class="hero">
       <img src="./images/hero.png" alt="website's hero photo">
     </div>
     <hr>
+    <div data-view="product-lists" class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="product-listing">
+    </div>
+    <div data-view="saved-items" class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding hidden" id="saved-items">
+    </div>
+  </section>
 
-    <div class="">
-      <div data-view="product-lists" class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding" id="product-listing">
-
+  <section>
+    <div data-view="product-details" id="product-details">
+      <div class="card m-5 p-5">
+        <span class="itemId product-name-span fs-3 fw-bold pb-3"></span>
+        <img src=" " class="card-img-top product-img-details w-50 pb-2 align-self-center">
+        <h3 class="fw-bold">Price: </h3> <span class="product-price-span fs-3 pb-2"></span>
+        <h3 class="fw-bold">Description:</h3>
+        <p class="product-description-details lh-3"></p>
+        <!-- <button type="submit" class="save-submit-button align-self-end">Save</button>
+        <button type="submit" class="delete-button hidden">Delete</button> -->
       </div>
     </div>
+  </section>
 
-
-    <div class="saved-item-list">
-      <div data-view="saved-items" class="row no-padding hidden" id="saved-items">
-      </div>
-    </div>
-
-    <!-- <div class="">
-      <div data-view="product-details" class="margin-top hidden" id="product-details">
-        <div class="row">
-          <div class="column-mobile-full column-desktop-half padding-right">
-            <img src=" " class="product-img-details">
-          </div>
-          <div class="column-desktop-half">
-            <h3 class="itemId">Product Name: <span class="product-name-span"></span>
-            </h3>
-            <h3>Price: <span class="product-price-span"></span>
-            </h3>
-            <h3>Description:</h3>
-            <p class="product-description-details"></p>
-            <div class="justify-right margin-bottom">
-              <button type="submit" class="save-submit-button">Save</button>
-              <button type="submit" class="delete-button hidden">Delete</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </div>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
           crossorigin="anonymous"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

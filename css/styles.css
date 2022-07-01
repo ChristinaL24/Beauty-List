@@ -4,30 +4,16 @@
 
 body {
   font-family: Montserrat, sans-serif, serif;
-  min-width: 650px;
-  background-color: rgb(255, 249, 249);
+  background-color: rgb(245, 235, 235);
 }
 
 header {
-  background-color: rgb(255, 249, 249);
+  background-color: rgb(245, 235, 235);
   font-family: monospace, cursive, sans-serif;
 }
 
-/* img {
-  border-radius: 2px;
-  border: 2px solid #ffd0d0;
-} */
-
 h2 {
   font-family: Raleway, monospace, sans-serif;
-}
-
-ul {
-  line-height: 0.75rem;
-}
-
-h5 {
-  font-size: 0.7rem;
 }
 
 a {
@@ -39,10 +25,6 @@ a {
 
 a:hover {
   color: #ffafaf;
-}
-
-i {
-  font-size: 1.3rem;
 }
 
 li,
@@ -62,20 +44,6 @@ li,
 .delete-button:hover,
 .save-submit-button:hover {
   transform: scale(1.1);
-}
-
-.product-name-span,
-.product-price-span,
-p {
-  font-weight: normal;
-}
-
-.product-description-details {
-  line-height: 1.5rem;
-}
-
-h3 {
-  font-weight: 600;
 }
 
 li:hover {

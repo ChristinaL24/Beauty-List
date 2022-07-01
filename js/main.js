@@ -3,7 +3,7 @@ var $productDetails = document.querySelector('#product-details');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=2');
+xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=3');
 xhr.responseType = 'json';
 
 $loadingDiv.className = 'loading';
@@ -63,12 +63,12 @@ function renderListing(listing) {
 
   var productName = document.createElement('h5');
   productName.textContent = capitalizeWords(listing.name);
-  productName.setAttribute('class', 'card-title');
+  productName.setAttribute('class', 'card-title fw-bold pb-2');
   secondDiv.appendChild(productName);
 
-  var productPrice = document.createElement('h5');
+  var productPrice = document.createElement('span');
   productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
-  productPrice.setAttribute('class', 'card-text');
+  productPrice.setAttribute('class', 'card-text fs-5');
   secondDiv.appendChild(productPrice);
 
   makeUpListing.setAttribute('data-entry-id', listing.entryId);
@@ -76,7 +76,6 @@ function renderListing(listing) {
   data.view = 'product-lists';
 
   return makeUpListing;
-
 }
 
 function capitalizeWords(string) {
@@ -108,6 +107,8 @@ function listingHomePage(event) {
   data.view = 'product-lists';
 }
 
+// var $hero = document.querySelector('.hero');
+
 var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
@@ -119,6 +120,7 @@ function productListingClicked(event) {
 
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+
   detailListingPage();
 
   for (var i = 0; i < xhr.response.length; i++) {
@@ -206,34 +208,32 @@ function renderSavedItems(listing) {
   var savedContainer = document.createElement('ul');
 
   var savedListing = document.createElement('li');
-  savedListing.setAttribute('class', 'column-mobile-full column-desktop-half padding-right margin-top');
+  savedListing.setAttribute('class', 'col');
   savedContainer.appendChild(savedListing);
 
   var firstDiv = document.createElement('div');
-  firstDiv.setAttribute('class', 'wrapper row');
+  firstDiv.setAttribute('class', 'card h-100');
   savedListing.appendChild(firstDiv);
-
-  var secondDiv = document.createElement('div');
-  secondDiv.setAttribute('class', 'column-one-third');
-  firstDiv.appendChild(secondDiv);
 
   var productImg = document.createElement('img');
   productImg.setAttribute('src', listing.image);
-  productImg.setAttribute('class', 'product-img-listing');
-  secondDiv.appendChild(productImg);
+  productImg.setAttribute('class', 'card-img-top');
+  productImg.setAttribute('alt', 'product image');
+  firstDiv.appendChild(productImg);
 
-  var thirdDiv = document.createElement('div');
-  thirdDiv.setAttribute('class', 'column-two-third product-info');
-  firstDiv.appendChild(thirdDiv);
+  var secondDiv = document.createElement('div');
+  secondDiv.setAttribute('class', 'card-body');
+  firstDiv.appendChild(secondDiv);
 
   var productName = document.createElement('h5');
   productName.textContent = capitalizeWords(listing.name);
-  thirdDiv.appendChild(productName);
+  productName.setAttribute('class', 'card-title fw-bold pb-2');
+  secondDiv.appendChild(productName);
 
-  var productPrice = document.createElement('h5');
-  productPrice.textContent = 'Price: ' + listing.price;
-  productPrice.setAttribute('class', 'display-gap');
-  thirdDiv.appendChild(productPrice);
+  var productPrice = document.createElement('span');
+  productPrice.textContent = 'Price: $' + Number.parseFloat(listing.price).toFixed(2);
+  productPrice.setAttribute('class', 'card-text fs-5');
+  secondDiv.appendChild(productPrice);
 
   savedListing.setAttribute('data-entry-id', listing.id);
 
@@ -312,3 +312,15 @@ function deleteButtonFunction(event) {
   }
   savedHomePage();
 }
+
+// var $dataView = document.querySelectorAll('[data-view]');
+// function viewSwap(view) {
+//   for (var i = 0; i < $dataView.length; i++) {
+//     var currentView = $dataView[i];
+//     if (view === currentView.getAttribute('data-view')) {
+//       currentView.classList.remove('hidden');
+//     } else {
+//       currentView.classList.add('hidden');
+//     }
+//   }
+// }
