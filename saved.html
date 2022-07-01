@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" name="title" content="Beauty List">
+    <meta property="og:description" name="description"
+      content="A web application for beauty enthusiast who want to browse makeup products">
+    <meta property="og:image" name="image"
+      content="https://github.com/ChristinaL24/beauty-list/blob/master/images/makeup.jpg">
+    <meta property="og:url" content="https://christinal24.github.io/beauty-list/" />
+    <title>Beauty List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div class="d-flex flex-nowrap pt-4 ms-4 me-4 justify-content-between">
+        <div class="" id="nav-bar">
+          <h2 data-view="saved-items" class="saved-header">Saved Items</h2>
+        </div>
+        <div class="d-flex gap-5">
+          <a href="index.html" class="home-button" id="home-button">Home</a>
+          <a href="saved.html" class="heart-save-button" id="save-heart-button">Saved</a>
+        </div>
+      </div>
+      <hr>
+    </header>
+    <section>
+      <div class="hero">
+        <img src="./images/saved.png" alt="saved page hero photo">
+      </div>
+      <hr>
+      <div data-view="saved-items" class="row row-cols-3 row-cols-md-4 g-4 m-1 no-padding hidden" id="saved-items">
+      </div>
+    </section>
+
+    <!-- <div data-view="product-details" id="product-details">
+        <div class="card m-5 p-5">
+          <span class="itemId product-name-span fs-3 fw-bold pb-3"></span>
+          <img src=" " class="card-img-top product-img-details w-50 pb-2 align-self-center">
+          <h3 class="fw-bold">Price: </h3> <span class="product-price-span fs-3 pb-2"></span>
+          <h3 class="fw-bold">Description:</h3>
+          <p class="product-description-details lh-3"></p>
+          <button type="submit" class="save-submit-button align-self-end">Save</button>
+          <button type="submit" class="delete-button hidden">Delete</button>
+        </div>
+      </div> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

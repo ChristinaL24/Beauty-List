@@ -5,9 +5,7 @@ var $loadingDiv = document.querySelector('.loading');
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=3');
 xhr.responseType = 'json';
-
 $loadingDiv.className = 'loading';
-
 xhr.addEventListener('load', function () {
 
   event.preventDefault();
@@ -96,19 +94,6 @@ function detailListingPage() {
   data.view = 'product-details';
 }
 
-var $homeButton = document.querySelector('#home-button');
-$homeButton.addEventListener('click', listingHomePage);
-function listingHomePage(event) {
-  $productDetails.className = 'margin-top hidden';
-  $productListing.className = 'row no-padding';
-  $beautyHeader.className = 'beauty-header';
-  $savedHeader.className = 'saved-header hidden';
-  $savedItemsStorage.className = 'row no-padding hidden';
-  data.view = 'product-lists';
-}
-
-// var $hero = document.querySelector('.hero');
-
 var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
@@ -172,16 +157,12 @@ function saveSubmitButtonFunction(event) {
   }
 }
 
-var $savedHeader = document.querySelector('.saved-header');
-var $beautyHeader = document.querySelector('.beauty-header');
 var $savedItemsStorage = document.querySelector('#saved-items');
 
 var $savedHomePageButton = document.querySelector('#save-heart-button');
 $savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
 
-  $savedHeader.className = 'saved-header';
-  $beautyHeader.className = 'beauty-header hidden';
   $productListing.className = 'row no-padding hidden';
   $savedItemsStorage.className = 'row no-padding';
   $productDetails.className = 'margin-top hidden';
@@ -242,34 +223,6 @@ function renderSavedItems(listing) {
   return savedListing;
 }
 
-function productDetailRefresh() {
-  var getListingItem = data.id;
-  detailListingPage();
-
-  $productImageDetails.setAttribute('src', getListingItem.image);
-  $productNameDetails.textContent = getListingItem.name;
-  $productPriceDetails.textContent = getListingItem.price;
-  $productDescriptionDetails.textContent = getListingItem.description;
-
-}
-
-function savedPageRefresh() {
-  for (var i = 0; i < data.save.length; i++) {
-    var dataSavedItems = data.save[i];
-    var savedProducts = renderSavedItems(dataSavedItems);
-    $savedItemsStorage.appendChild(savedProducts);
-    savedHomePage();
-  }
-}
-
-if (data.view === 'product-lists') {
-  listingHomePage();
-} else if (data.view === 'product-details') {
-  productDetailRefresh();
-} else if (data.view === 'saved-items') {
-  savedPageRefresh();
-}
-
 $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
 function savedItemStorageFunction(event) {
   var getListingItem = event.target.closest('li');
@@ -312,15 +265,3 @@ function deleteButtonFunction(event) {
   }
   savedHomePage();
 }
-
-// var $dataView = document.querySelectorAll('[data-view]');
-// function viewSwap(view) {
-//   for (var i = 0; i < $dataView.length; i++) {
-//     var currentView = $dataView[i];
-//     if (view === currentView.getAttribute('data-view')) {
-//       currentView.classList.remove('hidden');
-//     } else {
-//       currentView.classList.add('hidden');
-//     }
-//   }
-// }
