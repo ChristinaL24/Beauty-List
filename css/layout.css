@@ -5,10 +5,7 @@
 }
 
 body {
-  /* min-height: 100vh;
-  min-width: 525px;
-  background-image: url("../images/bg.png");
-  background-attachment: fixed; */
+  min-width: 680px;
 }
 
 .hero {
@@ -36,4 +33,25 @@ img {
   height: 100px;
   left: 15rem;
   top: 15rem;
+}
+
+@media screen and (min-width: 768px) {
+  .loading {
+    left: 30rem;
+    top: 15rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .loading {
+    left: 35rem;
+    top: 15rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loading {
+    left: 40rem;
+    top: 15rem;
+  }
 }
