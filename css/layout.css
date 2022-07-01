@@ -35,6 +35,10 @@ img {
   top: 15rem;
 }
 
+.product-img-details {
+  width: 20rem;
+}
+
 @media screen and (min-width: 700px) {
   .loading {
     left: 22rem;
