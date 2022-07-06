@@ -1,4 +1,3 @@
-// View Swapping Code
 var $tabContainer = document.querySelector('.tab-container');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
@@ -25,13 +24,11 @@ function viewSwap(event) {
   }
 }
 
-// API Call Code
-
 var $productListing = document.querySelector('#product-listings');
 var $loadingDiv = document.querySelector('.loading');
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?price_less_than=3');
+xhr.open('GET', 'https://makeup-api.herokuapp.com/api/v1/products.json?rating_greater_than=3');
 xhr.responseType = 'json';
 $loadingDiv.className = 'loading';
 xhr.addEventListener('load', function () {
@@ -57,8 +54,6 @@ xhr.addEventListener('load', function () {
   $loadingDiv.className = 'loading hidden';
 });
 xhr.send();
-
-// DOM to render listings
 
 function renderListing(listing) {
   event.preventDefault();
@@ -104,7 +99,6 @@ function renderListing(listing) {
   return makeUpListing;
 }
 
-// Capitalize words function
 function capitalizeWords(string) {
   var array = string.split(' ');
   var newString = '';
@@ -116,7 +110,6 @@ function capitalizeWords(string) {
   return newString.slice(1);
 }
 
-// Return home
 function listingHomePage(event) {
   $productDetails.classList.add('hidden');
   $productListing.classList.remove('hidden');
@@ -131,7 +124,6 @@ function homeButtonClicked(event) {
   }
 }
 
-// Get Details
 function detailListingPage() {
   $productDetails.classList.remove('hidden');
   $productListing.classList.add('hidden');
@@ -146,7 +138,6 @@ var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
 var $heroImg = document.querySelector('.hero');
-// var $productListingId = document.querySelector('.itemId');
 
 $productListing.addEventListener('click', productListingClicked);
 function productListingClicked(event) {
@@ -161,7 +152,6 @@ function productListingClicked(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
-      // $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
       var detailsObject = {
         image: xhr.response[i].image_link,
@@ -178,7 +168,6 @@ function productListingClicked(event) {
   }
 }
 
-/* Function that checks if a listing exist within our array of objects */
 function containsObject(object, array) {
   for (var i = 0; i < array.length; i++) {
     if (object.id === array[i].id) {
@@ -188,7 +177,6 @@ function containsObject(object, array) {
   return false;
 }
 
-/* addEventListener for save */
 var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
@@ -294,7 +282,6 @@ function savedItemStorageFunction(event) {
       $productNameDetails.textContent = xhr.response[i].name;
       $productPriceDetails.textContent = '$' + Number.parseFloat(xhr.response[i].price).toFixed(2);
       $productDescriptionDetails.textContent = xhr.response[i].description;
-      // $productListingId.setAttribute('data-entry-id', getListingId);
 
       var detailsObject = {
         image: xhr.response[i].image_link,
