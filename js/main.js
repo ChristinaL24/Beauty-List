@@ -115,8 +115,8 @@ function capitalizeWords(string) {
   }
   return newString.slice(1);
 }
-// Return home
 
+// Return home
 function listingHomePage(event) {
   $productDetails.classList.add('hidden');
   $productListing.classList.remove('hidden');
@@ -132,7 +132,6 @@ function homeButtonClicked(event) {
 }
 
 // Get Details
-
 function detailListingPage() {
   $productDetails.classList.remove('hidden');
   $productListing.classList.add('hidden');
@@ -141,7 +140,6 @@ function detailListingPage() {
   // viewSwap('product-details');
 }
 
-// var $productDetails = document.querySelector('#product-details');
 var $productDetails = document.querySelector('.details-page');
 var $productImageDetails = document.querySelector('.product-img-details');
 var $productNameDetails = document.querySelector('.product-name-span');
@@ -165,14 +163,14 @@ function productListingClicked(event) {
       $productDescriptionDetails.textContent = xhr.response[i].description;
       // $productListingId = $productListingId.setAttribute('data-entry-id', getListingId);
 
-      //     var detailsObject = {
-      //       image: xhr.response[i].image_link,
-      //       name: xhr.response[i].name,
-      //       price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
-      //       id: xhr.response[i].id,
-      //       description: xhr.response[i].description
-      //     };
-      //     data.id = detailsObject;
+      var detailsObject = {
+        image: xhr.response[i].image_link,
+        name: xhr.response[i].name,
+        price: '$' + Number.parseFloat(xhr.response[i].price).toFixed(2),
+        id: xhr.response[i].id,
+        description: xhr.response[i].description
+      };
+      data.id = detailsObject;
       //     var savedProducts = renderSavedItems(detailsObject);
       //     $savedItemsStorage.appendChild(savedProducts);
       //     $saveSubmitButton.className = 'save-submit-button';
@@ -184,7 +182,32 @@ function productListingClicked(event) {
   }
 }
 
-// var $productListing = document.querySelector('#product-listing');
+/* Function that checks if a listing exist within our array of objects */
+function containsObject(object, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (object.id === array[i].id) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/* addEventListener for save */
+var $saveSubmitButton = document.querySelector('.save-submit-button');
+$saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
+function saveSubmitButtonFunction(event) {
+
+  event.preventDefault();
+  /* if containObject returns true, data.id will not be pushed. if containObject
+  returns false, it will get pushed into data.save */
+  if (event.target.matches('.save-submit-button')) {
+    if (containsObject(data.id, data.save) !== true) {
+      data.save.push(data.id);
+      viewSwap('saved-listings');
+    }
+  }
+}
+
 // // var $productDetails = document.querySelector('#product-details');
 // // var $loadingDiv = document.querySelector('.loading');
 
@@ -315,15 +338,6 @@ function productListingClicked(event) {
 //     }
 //   }
 //   data.view = 'product-details';
-// }
-
-// function containsObject(object, array) {
-//   for (var i = 0; i < array.length; i++) {
-//     if (object.id === array[i].id) {
-//       return true;
-//     }
-//   }
-//   return false;
 // }
 
 // var $saveSubmitButton = document.querySelector('.save-submit-button');
