@@ -174,7 +174,6 @@ function productListingClicked(event) {
       var savedProducts = renderSavedItems(detailsObject);
       $savedItemsStorage.appendChild(savedProducts);
 
-      viewSwap('product-details');
     }
   }
 }
@@ -194,25 +193,31 @@ var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
   event.preventDefault();
-  /* if containObject returns true, data.id will not be pushed. if containObject
-  returns false, it will get pushed into data.save */
+
   if (event.target.matches('.save-submit-button')) {
     if (containsObject(data.id, data.save) !== true) {
       data.save.push(data.id);
     }
   }
-  // savedHomePage();
+  savedHomePage();
 }
 
+function savedPage() {
+  $savedHeroImg.classList.remove('hidden');
+  $savedItemsStorage.classList.remove('hidden');
+  $deleteButton.classList.remove('hidden');
+  $saveSubmitButton.classList.add('hidden');
+  $productDetails.classList.add('hidden');
+  $savedPage.classList.remove('hidden');
+}
+
+var $savedPage = document.querySelector('.saved-page');
 var $savedItemsStorage = document.querySelector('#saved-items');
 var $savedHomePageButton = document.querySelector('.saved-button');
 $savedHomePageButton.addEventListener('click', savedHomePage);
 function savedHomePage(event) {
 
-  $savedHeroImg.classList.remove('hidden');
-  $savedItemsStorage.classList.remove('hidden');
-  $deleteButton.classList.remove('hidden');
-  $saveSubmitButton.classList.add('hidden');
+  savedPage();
 
   removeAllChildNodes($savedItemsStorage);
 
@@ -303,16 +308,15 @@ function savedItemStorageFunction(event) {
   }
 }
 
-// // var $deleteButton = document.querySelector('.delete-button');
-// // $deleteButton.addEventListener('click', deleteButtonFunction);
+$deleteButton.addEventListener('click', deleteButtonFunction);
 
-// // function deleteButtonFunction(event) {
-// //   if (event.target.matches('.delete-button') && containsObject(data.id, data.save) === true) {
-// //     for (var i = 0; i < data.save.length; i++) {
-// //       if (data.id.id === data.save[i].id) {
-// //         data.save.splice(i, 1);
-// //       }
-// //     }
-// //   }
-// //   savedHomePage();
-// // }
+function deleteButtonFunction(event) {
+  if (event.target.matches('.delete-button') && containsObject(data.id, data.save) === true) {
+    for (var i = 0; i < data.save.length; i++) {
+      if (data.id.id === data.save[i].id) {
+        data.save.splice(i, 1);
+      }
+    }
+  }
+  savedHomePage();
+}
