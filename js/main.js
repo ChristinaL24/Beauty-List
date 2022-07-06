@@ -136,8 +136,8 @@ function detailListingPage() {
   $productDetails.classList.remove('hidden');
   $productListing.classList.add('hidden');
   $heroImg.classList.add('hidden');
-  // $savedItemsStorage.className = 'row no-padding hidden';
-  // viewSwap('product-details');
+  $saveSubmitButton.classList.remove('hidden');
+  $deleteButton.classList.add('hidden');
 }
 
 var $productDetails = document.querySelector('.details-page');
@@ -146,7 +146,6 @@ var $productNameDetails = document.querySelector('.product-name-span');
 var $productPriceDetails = document.querySelector('.product-price-span');
 var $productDescriptionDetails = document.querySelector('.product-description-details');
 var $heroImg = document.querySelector('.hero');
-
 // var $productListingId = document.querySelector('.itemId');
 
 $productListing.addEventListener('click', productListingClicked);
@@ -155,6 +154,7 @@ function productListingClicked(event) {
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
   detailListingPage();
+
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
       $productImageDetails.setAttribute('src', xhr.response[i].image_link);
@@ -171,12 +171,9 @@ function productListingClicked(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
-      //     var savedProducts = renderSavedItems(detailsObject);
-      //     $savedItemsStorage.appendChild(savedProducts);
-      //     $saveSubmitButton.className = 'save-submit-button';
-      //     $deleteButton.className = 'delete-button hidden';
-      //   }
-      // }
+      var savedProducts = renderSavedItems(detailsObject);
+      $savedItemsStorage.appendChild(savedProducts);
+
       viewSwap('product-details');
     }
   }
@@ -197,7 +194,6 @@ var $saveSubmitButton = document.querySelector('.save-submit-button');
 $saveSubmitButton.addEventListener('click', saveSubmitButtonFunction);
 function saveSubmitButtonFunction(event) {
   event.preventDefault();
-  data.save = [];
   /* if containObject returns true, data.id will not be pushed. if containObject
   returns false, it will get pushed into data.save */
   if (event.target.matches('.save-submit-button')) {
@@ -209,19 +205,22 @@ function saveSubmitButtonFunction(event) {
 }
 
 var $savedItemsStorage = document.querySelector('#saved-items');
+var $savedHomePageButton = document.querySelector('.saved-button');
+$savedHomePageButton.addEventListener('click', savedHomePage);
+function savedHomePage(event) {
 
-// var $savedHomePageButton = document.querySelector('#save-button');
-// $savedHomePageButton.addEventListener('click', savedHomePage);
-// function savedHomePage(event) {
+  $savedHeroImg.classList.remove('hidden');
+  $savedItemsStorage.classList.remove('hidden');
+  $deleteButton.classList.remove('hidden');
+  $saveSubmitButton.classList.add('hidden');
 
-//   // $productListing.className = 'row no-padding hidden';
-//   // $productDetails.className = 'margin-top hidden';
-removeAllChildNodes($savedItemsStorage);
+  removeAllChildNodes($savedItemsStorage);
 
-for (var i = 0; i < data.save.length; i++) {
-  var dataSavedItems = data.save[i];
-  var savedProductsInStorage = renderSavedItems(dataSavedItems);
-  $savedItemsStorage.appendChild(savedProductsInStorage);
+  for (var i = 0; i < data.save.length; i++) {
+    var dataSavedItems = data.save[i];
+    var savedProductsInStorage = renderSavedItems(dataSavedItems);
+    $savedItemsStorage.appendChild(savedProductsInStorage);
+  }
 }
 
 function removeAllChildNodes(parent) {
@@ -267,15 +266,22 @@ function renderSavedItems(listing) {
   return savedListing;
 }
 
-// function savedHomePage() {
-//   data.view = 'saved-listings';
-//   viewSwap('saved-listings');
-// }
+var $savedHeroImg = document.querySelector('.saved-hero-img');
+var $deleteButton = document.querySelector('.delete-button');
+
+function savedItemsDetails() {
+  $productDetails.classList.remove('hidden');
+  $productListing.classList.add('hidden');
+  $heroImg.classList.add('hidden');
+  $savedHeroImg.classList.add('hidden');
+  $savedItemsStorage.classList.add('hidden');
+}
 
 $savedItemsStorage.addEventListener('click', savedItemStorageFunction);
 function savedItemStorageFunction(event) {
   var getListingItem = event.target.closest('li');
   var getListingId = parseInt(getListingItem.getAttribute('data-entry-id'));
+  savedItemsDetails();
 
   for (var i = 0; i < xhr.response.length; i++) {
     if (xhr.response[i].id === getListingId) {
@@ -293,8 +299,6 @@ function savedItemStorageFunction(event) {
         description: xhr.response[i].description
       };
       data.id = detailsObject;
-      $saveSubmitButton.classList.add('hidden');
-      // $deleteButton.className = 'delete-button';
     }
   }
 }
